@@ -10,20 +10,20 @@
 
         &:hover,
         &:focus {
-            // box-shadow: (7px -7px 21px $button-header-library);
+            box-shadow: (7px -7px 21px rgba(255, 107, 1, 0.6));
             opacity: 0.9;
         }
     }
 
     &__wrap {
-        // font-family: $font-family;
+        font-family: Roboto,sans-serif;
         font-weight: 500;
         font-size: 12px;
-        // line-height: $line-height;
+        line-height: calc(16 / 12);
     }
 
     &__title {
-        // color: $primary-text-color;
+        color: #000000;
         text-transform: uppercase;
     }
 
@@ -42,7 +42,7 @@
     }
 
     &__text {
-        // color: $accent-color;
+        color: #ff6b08;
     }
 
     &__year {
@@ -56,8 +56,8 @@
     &__release {
         padding: 0 10px;
         border-radius: 5px;
-        background-color: $accent-color;
-        // color: $white-text-color;
+        background-color: #ff6b08;
+        color: #ffffff;
 
         cursor: default;
     }
