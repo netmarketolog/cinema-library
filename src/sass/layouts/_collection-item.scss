@@ -61,6 +61,21 @@
 
         cursor: default;
     }
+
+    &__rating {
+        display: inline-block;
+        margin-left: 10px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-radius: 5px;
+        color: #eeeeee;
+        background-color: #ff6b08;
+        width: 36px;
+        height: 16px;
+        font-size: 14px;
+        line-height: 1.17;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: $to-tablet) {
