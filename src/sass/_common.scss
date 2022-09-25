@@ -1,14 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-
 // Плавный скролл
-
 html {
     scroll-behavior: smooth;
 }
 
-
 // Убирает лишние отступы у картинок снизу + добавляет отзывчивость
-
 img {
     display: block;
     max-width: 100%;
@@ -16,13 +12,11 @@ img {
 }
 
 // Убирает подчеркивание у всех ссылок
-
 a {
     text-decoration: none;
 }
 
 // Обнуляет стиль списка (дубль в плейсхолдерах)
-
 li {
     list-style: none;
     padding: 0;
@@ -30,7 +24,6 @@ li {
 }
 
 // Обнуляет отступы у текста и элементов списка
-
 h1,
 h2,
 h3,
@@ -44,3 +37,16 @@ li {
     padding: 0;
 }
 
+.is-hidden {
+    white-space: nowrap;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+}
