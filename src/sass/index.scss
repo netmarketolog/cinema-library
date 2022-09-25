@@ -1,12 +1,10 @@
 @import './common';
-
 //  Переменные, миксины, плейсхолдеры
 @import './utils/breakpoints';
-
-
+//Loader (spinner) для асинхронних запитів
+@import './spinner';
 // Базовые стили
 @import './base/container';
-
 // Секции и блоки
 @import './layouts/films-collection';
 @import './layouts/collection-item';
