@@ -1,22 +1,34 @@
-// Container
-
-.container {
-    display: block;
-    margin: 0 auto;
-    width: $mobile;
-    padding: 0 20px;
-
-    // Container for tablets
-
-    @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-        width: $tablet;
-        padding: 0 20px;
+.container__main--content {
+    @media screen and (min-width: $mobile) {
+        padding-bottom: 40px;
+        padding-top: 20px;
     }
 
-    // Container for desktop
+    @media screen and (min-width: $tablet) {
+        padding-bottom: 50px;
+        padding-top: 60px;
+    }
+}
+
+.container__main {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+
+    @media screen and (min-width: $mobile) {
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 32px;
+        grid-row-gap: 71px;
+    }
 
     @media screen and (min-width: $desktop) {
-        width: $desktop;
-        padding: 0 20px;
+        grid-template-columns: repeat(3, auto);
+        grid-column-gap: 16px;
+        grid-row-gap: 92px;
     }
 }
