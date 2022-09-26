@@ -1,0 +1,72 @@
+.header__container {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+    @media screen and (max-width: $tablet) {
+        height: 230px;
+        background-image: 
+        url(../images/background-mobile-header-min.jpg);
+  
+      @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+        background-image: 
+          url(../images/background-mobile-header-x2-min.jpg);
+      }
+    }
+  
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        height: 216px;
+        background-image: 
+        url(../images/background-tablet-header-min.jpg);
+  
+      @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+        background-image: 
+          url(../images/background-tablet-header-x2-min.jpg);
+      }
+    }
+  
+    @media screen and (min-width: $desktop) {
+        height: 216px;
+        background-image: 
+        url(../images/background-descktop-header-min.jpg);
+  
+      @media screen and (min-device-pixel-ratio: 2),
+        screen and (min-resolution: 192dpi),
+        screen and (min-resolution: 2dppx) {
+        background-image: 
+          url(../images/background-descktop-header-x2-min.jpg);
+      }
+      max-width: 1600px;
+    }
+  }
+
+.site-nav{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 40px 20px;
+}
+
+.logo__Filmoteka{
+    @media screen and(max-width: $tablet) {
+        display: none;
+    }
+
+    color: #fff;
+}
+
+.site-nav__list{
+    display: flex;
+    align-items: center;
+}
+
+.site-nav__link{
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
