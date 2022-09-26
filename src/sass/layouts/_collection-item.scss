@@ -72,7 +72,7 @@
         background-color: #ff6b08;
         width: 36px;
         height: 16px;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 1.17;
         text-align: center;
     }
@@ -86,12 +86,32 @@
 
 @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     .card__img {
-        width: 294px;
+        width: 336px;
+    }
+
+    .card__rating {
+        width: 36px;
+        height: 16px;
+        font-size: 12px;
+        line-height: calc(16 / 12);
     }
 }
 
 @media screen and (min-width: $desktop) {
     .card__img {
-        width: 274px;
+        width: 395px;
+        height: 555px;
+    }
+
+    .card__wrap {
+        font-size: 20px;
+        line-height: calc(24 / 20);
+    }
+    
+    .card__rating {
+        width: 40px;
+        height: 24px;
+        font-size: 16px;
+        line-height: calc(16 / 12);
     }
 }
