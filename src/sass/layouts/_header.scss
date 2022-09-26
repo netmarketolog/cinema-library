@@ -46,14 +46,14 @@
     @media screen and (min-width: $desktop) {
         height: 216px;
         background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-        url(../images/background-test.jpg);
+        url(../images/background-descktop-header-index-min.jpg);
         opacity: 0.9;
   
       @media screen and (min-device-pixel-ratio: 2),
         screen and (min-resolution: 192dpi),
         screen and (min-resolution: 2dppx) {
         background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-          url(../images/background-test.jpg);
+          url(../images/background-descktop-header-x2-min.jpg);
           opacity: 0.9;
       }
       max-width: 1600px;
