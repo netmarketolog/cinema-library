@@ -22,7 +22,7 @@
         @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
             background-image: url(../images/background-descktop-header-x2-min.jpg);
         }
-        max-width: 1600px;
+        margin: 0px;
     }
 }
 
@@ -30,6 +30,10 @@
     display: flex;
     justify-content: space-between;
     padding: 40px 20px;
+    @media screen and (min-width: $desktop) {
+        max-width: 1600px;
+        margin: auto;
+    }
 }
 
 .logo__Filmoteka {
