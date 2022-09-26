@@ -87,6 +87,7 @@
 @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     .card__img {
         width: 336px;
+        height: 445px;
     }
 
     .card__rating {
@@ -100,7 +101,7 @@
 @media screen and (min-width: $desktop) {
     .card__img {
         width: 395px;
-        height: 555px;
+        height: 574px;
     }
 
     .card__wrap {

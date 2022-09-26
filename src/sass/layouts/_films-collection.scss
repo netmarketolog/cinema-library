@@ -26,8 +26,8 @@
 @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     .collection {
         padding-top: 60px;
-        padding-left: 55px;
-        padding-right: 55px;
+        padding-left: 15px;
+        padding-right: 15px;
 
         &__item {
             width: calc((100% - 30px) / 2);
@@ -46,8 +46,7 @@
 @media screen and (min-width: $desktop) {
     .collection {
         padding-top: 60px;
-        padding-left: 51px;
-        padding-right: 51px;
+        justify-content: center;
 
         &__item {
             width: calc((100% - 60px) / 3);
@@ -58,7 +57,7 @@
         }
 
         &__item:not(:nth-child(3n)) {
-            margin-right: 30px;
+            margin-right: 16px;
         }
     }
 }
