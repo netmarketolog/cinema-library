@@ -19,10 +19,12 @@ export default function fetchPopularFilms() {
         visiblePages: 5,
       });
       pagination.on('beforeMove', function (e) {
+        refs.spinner.classList.remove('is-hidden');
         const newPage = e.page;
-        filmsPopular
-          .fetchArticles(newPage)
-          .then(r => createPopularFilmsMarkup(r));
+        filmsPopular.fetchArticles(newPage).then(r => {
+          createPopularFilmsMarkup(r);
+          refs.spinner.classList.add('is-hidden');
+        });
       });
       refs.spinner.classList.add('is-hidden');
     })
