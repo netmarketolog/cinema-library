@@ -2,14 +2,14 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    @media screen and (max-width: $tablet) {
+    @media screen and (max-width: $to-tablet) {
         height: 230px;
         background-image: url(../images/background-mobile-header-min.jpg);
         @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
             background-image: url(../images/background-mobile-header-x2-min.jpg);
         }
     }
-    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+    @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
         height: 216px;
         background-image: url(../images/background-tablet-header-min.jpg);
         @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
@@ -31,7 +31,7 @@
     justify-content: space-between;
     padding: 40px 20px;
     @media screen and (min-width: $desktop) {
-        max-width: 1600px;
+        max-width: $desktop;
         margin: auto;
     }
 }
