@@ -1,130 +1,129 @@
 .card__item {
-    list-style-type: none;
-    height: 440px;
-    opacity: 1;
+  list-style-type: none;
+  height: 440px;
+  opacity: 1;
 
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:hover,
-    &:focus {
-        box-shadow: (7px -7px 21px rgba(255, 107, 1, 0.6));
-        opacity: 0.9;
-    }
+  &:hover,
+  &:focus {
+    box-shadow: (7px -7px 21px rgba(255, 107, 1, 0.6));
+    opacity: 0.9;
+  }
 }
 
 .card__link {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .card__poster {
-    display: block;
-    height: 398px;
+  display: block;
+  height: 398px;
 }
 
 .card__poster {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 .card__wrap {
-    display: flex;
-    flex-wrap: wrap;
-} 
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .card__title {
-    text-transform: uppercase;
-    margin-top: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.33;
-    text-align: start;
+  text-transform: uppercase;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  text-align: start;
 }
 
 .card__description {
-    display: inline;
-    text-align: start;
+  display: inline;
+  text-align: start;
 
-    font-size: 12px;
-    line-height: 1.33;
-    color: #ff6b08;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ff6b08;
 }
 
 .card__rating {
-    display: inline-block;
-    margin-left: 10px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    border-radius: 5px;
-    color: #eeeeee;
-    background-color: #ff6b08;
-    width: 36px;
-    height: 16  px;
-    font-size: 12px;
-    line-height: 1.17;
-    text-align: center;
+  display: inline-block;
+  margin-left: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 5px;
+  color: #eeeeee;
+  background-color: #ff6b08;
+  width: 36px;
+  height: 16 px;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
 }
 
 // ************************** MOB *******************
 
-
 @media screen and (max-width: 767px) {
-    .card__item {
-        width: 280px;
-    }
+  .card__item {
+    width: 280px;
+  }
 
-    .card__poster {
-        width: 280px;
-    }
+  .card__poster {
+    width: 280px;
+  }
 }
 
 // ************************ TABLET ***************************
 
 @media screen and (min-width: $tablet) {
-    .card__item {
-        width: 336px;
-        height: 455px;
-    }
+  .card__item {
+    width: 336px;
+    height: 494px;
+  }
 
-    .card__poster {
-        width: 336px;
-        height: 455px;
-    }
+  .card__poster {
+    width: 336px;
+    height: 455px;
+  }
 
-    .card__rating {
-        width: 36px;
-        height: 16px;
-        font-size: 12px;
-        line-height: 1.17;
-    }
+  .card__rating {
+    width: 36px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 1.17;
+  }
 }
 
 // *********************** DESKTOP ********************
 
 @media screen and (min-width: $desktop) {
-    .card__item {
-        width: 395px;
-        height: 634px;
-    }
+  .card__item {
+    width: 395px;
+    height: 634px;
+  }
 
-    .card__poster {
-        width: 395px;
-        height: 574px;
-    }
+  .card__poster {
+    width: 395px;
+    height: 574px;
+  }
 
-    .card__title {
-        font-size: 20px;
-        line-height: calc(24 / 20);
-    }
+  .card__title {
+    font-size: 20px;
+    line-height: calc(24 / 20);
+  }
 
-    .card__description {
-        font-size: 20px;
-        line-height: calc(24 / 20);
-    }
+  .card__description {
+    font-size: 20px;
+    line-height: calc(24 / 20);
+  }
 
-    .card__rating {
-        width: 40px;
-        height: 24px;
-        font-size: 18px;
-        line-height: 1.17;
-    }
+  .card__rating {
+    width: 40px;
+    height: 24px;
+    font-size: 18px;
+    line-height: 1.17;
+  }
 }
