@@ -7,13 +7,11 @@
 // Базовые стили
 @import './base/container';
 @import './base/base';
+@import './layouts/header';
 // Секции и блоки
 // @import './layouts/films-collection';
 @import './layouts/collection-item';
-<<<<<<< Updated upstream
-
-=======
 @import './layouts/modal-film';
 @import './layouts/modal-team';
 @import './layouts/footer';
->>>>>>> Stashed changes
+
