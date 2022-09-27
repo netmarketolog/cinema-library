@@ -1,34 +1,37 @@
 .container__main--content {
-    @media screen and (min-width: $mobile) {
-        padding-bottom: 40px;
-        padding-top: 20px;
-    }
+  @media screen and (min-width: $mobile) {
+    padding-bottom: 40px;
+    padding-top: 20px;
+  }
 
-    @media screen and (min-width: $tablet) {
-        padding-bottom: 50px;
-        padding-top: 60px;
-    }
+  @media screen and (min-width: $tablet) {
+    padding-bottom: 50px;
+    padding-top: 60px;
+  }
 }
 
 .container__main {
-    height: 100%;
-    display: grid;
-    justify-content: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 
-    @media screen and (min-width: $mobile) {
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-    }
+  // @media screen and (min-width: $mobile) {
+  //     grid-column-gap: 20px;
+  //     grid-row-gap: 20px;
+  // }
 
-    @media screen and (min-width: $tablet) {
-        grid-template-columns: repeat(2, auto);
-        grid-column-gap: 32px;
-        grid-row-gap: 71px;
-    }
+  @media screen and (min-width: $tablet) {
+    gap: 32px;
+    // grid-template-columns: repeat(2, auto);
+    // grid-column-gap: 32px;
+    // grid-row-gap: 71px;
+  }
 
-    @media screen and (min-width: $desktop) {
-        grid-template-columns: repeat(3, auto);
-        grid-column-gap: 16px;
-        grid-row-gap: 92px;
-    }
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 16px;
+    grid-row-gap: 92px;
+  }
 }
