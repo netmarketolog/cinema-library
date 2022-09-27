@@ -12,18 +12,21 @@
 
 .container__main {
     height: 100%;
-    display: grid;
+    display: flex;
     justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 
-    @media screen and (min-width: $mobile) {
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-    }
+    // @media screen and (min-width: $mobile) {
+    //     grid-column-gap: 20px;
+    //     grid-row-gap: 20px;
+    // }
 
     @media screen and (min-width: $tablet) {
-        grid-template-columns: repeat(2, auto);
-        grid-column-gap: 32px;
-        grid-row-gap: 71px;
+        // grid-template-columns: repeat(2, auto);
+        // grid-column-gap: 32px;
+        // grid-row-gap: 71px;
+        
     }
 
     @media screen and (min-width: $desktop) {
