@@ -38,5 +38,25 @@
     <p class="error-search is-hidden">
       Search result not successful. Enter the correct movie name and
     </p>
+
+    <div class="theme-switch">
+      <label class="switch">
+        <input
+          type="checkbox"
+          name="theme"
+          id="theme-switch"
+          aria-label="Switch dark or light theme"
+          class="visually-hidden"
+        />
+        <span class="slider"></span>
+
+        <svg class="theme-switch__icon theme-switch__icon--sun">
+          <use href="./images/sprite.svg#sun"></use>
+        </svg>
+        <svg class="theme-switch__icon theme-switch__icon--moon">
+          <use href="./images/sprite.svg#moon"></use>
+        </svg>
+      </label>
+    </div>
   </div>
 </header>
