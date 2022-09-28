@@ -1,3 +1,13 @@
+.container {
+  margin: auto;
+  width: $mobile;
+  @media screen and (min-width: $tablet) {
+    width: $tablet;
+  }
+  @media screen and (min-width: $desktop) {
+    width: $desktop;
+  }
+}
 .container__main--content {
   @media screen and (min-width: $mobile) {
     padding-bottom: 40px;
