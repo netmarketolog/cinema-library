@@ -6,3 +6,4 @@ fetchPopularFilms();
 // const container = document.getElementById('pagination');
 
 import './js/serch-by-name/serchName'
+// import './js/modal-film'
