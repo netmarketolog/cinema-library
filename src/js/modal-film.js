@@ -12,7 +12,7 @@ function openModal() {
 
     refs.modalEl.classList.remove("is-hidden");
 
-    refs.modalEl.innerHTML = `
+      refs.modalRendEl.innerHTML = `
         <div class="film__poster">
         <img
           src="./images/modal-film-poster.jpg"
