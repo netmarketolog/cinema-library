@@ -1,109 +1,116 @@
 .header__container {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    @media screen and (max-width: $to-tablet) {
-        height: 230px;
-        background-image: url(../images/background-mobile-header-min.jpg);
-        @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-            background-image: url(../images/background-mobile-header-x2-min.jpg);
-        }
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @media screen and (max-width: $to-tablet) {
+    height: 230px;
+    background-image: url(../images/background-mobile-header-min.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: url(../images/background-mobile-header-x2-min.jpg);
     }
-    @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-        height: 216px;
-        background-image: url(../images/background-tablet-header-min.jpg);
-        @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-            background-image: url(../images/background-tablet-header-x2-min.jpg);
-        }
+  }
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    height: 216px;
+    background-image: url(../images/background-tablet-header-min.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: url(../images/background-tablet-header-x2-min.jpg);
     }
-    @media screen and (min-width: $desktop) {
-        height: 216px;
-        background-image: url(../images/background-descktop-header-min.jpg);
-        @media screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-            background-image: url(../images/background-descktop-header-x2-min.jpg);
-        }
-        margin: 0px;
+  }
+  @media screen and (min-width: $desktop) {
+    height: 216px;
+    background-image: url(../images/background-descktop-header-min.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: url(../images/background-descktop-header-x2-min.jpg);
     }
+    margin: 0px;
+  }
 }
 
 .site-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px 20px;
-    @media screen and (min-width: $desktop) {
-        max-width: $desktop;
-        margin: auto;
-    }
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
+  @media screen and (min-width: $desktop) {
+    max-width: $desktop;
+    margin: auto;
+  }
 }
 
 .logo__Filmoteka {
-    @media screen and(max-width: $tablet) {
-        display: none;
-    }
-    margin-left: 8px;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1.16;
-    align-items: center;
-    text-align: center;
-    color: #fff;
+  @media screen and(max-width: $tablet) {
+    display: none;
+  }
+  margin-left: 8px;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.16;
+  align-items: center;
+  text-align: center;
+  color: #fff;
 }
 
 .logo__header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .site-nav__list {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .site-nav__item:not(:last-child) {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 
 .site-nav__link {
-    position: relative;
-    font-family: 'Roboto';
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
+  position: relative;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 .search-form__input::placeholder {
-    color: #fff;
+  color: #fff;
 }
 
 .search-form {
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    @media screen and(min-width: $tablet) {}
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media screen and(min-width: $tablet) {
+  }
 }
 
 .search-form__input {
-    position: relative;
-    width: 280px;
-    height: 20px;
-    background: none;
-    outline: none;
-    padding: 0;
-    border: none;
-    border-bottom: 1px solid #fff;
-    color: #fff;
-    @media screen and(min-width: $tablet) {
-        width: 336px;
-    }
-    @media screen and(min-width: $desktop) {
-        width: 395px;
-    }
+  position: relative;
+  width: 280px;
+  height: 20px;
+  background: none;
+  outline: none;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  @media screen and(min-width: $tablet) {
+    width: 336px;
+  }
+  @media screen and(min-width: $desktop) {
+    width: 395px;
+  }
 }
 
 // .search-form__input::after {
@@ -119,43 +126,43 @@
 //     opacity: 1;
 // }
 .search-form__btn {
-    position: absolute;
-    margin-left: 270px;
-    border: none;
-    background: none;
-    outline: none;
-    @media screen and(min-width: $tablet) {
-        margin-left: 320px;
-    }
-    @media screen and(min-width: $desktop) {
-        margin-left: 380px;
-    }
+  position: absolute;
+  margin-left: 270px;
+  border: none;
+  background: none;
+  outline: none;
+  @media screen and(min-width: $tablet) {
+    margin-left: 320px;
+  }
+  @media screen and(min-width: $desktop) {
+    margin-left: 380px;
+  }
 }
 
 .site-nav__link--current::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #FF001B;
-    border-radius: 2px;
-    opacity: 1;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ff001b;
+  border-radius: 2px;
+  opacity: 1;
 }
 
 .error-search {
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 16px;
+  margin-right: 20px;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #ff001b;
+  @media screen and(min-width: $tablet) {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 20px;
-    margin-top: 16px;
-    margin-right: 20px;
-    font-size: 14px;
-    line-height: 1.14;
-    color: #FF001B;
-    @media screen and(min-width: $tablet) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  }
 }
