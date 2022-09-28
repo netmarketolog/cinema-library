@@ -1,7 +1,11 @@
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import "./js/getRefs"
-<<<<<<< Updated upstream
+
 import "./js/local-storage/addMovie";
-=======
-import "./js/local-storage/addMovie"
->>>>>>> Stashed changes
+
+import fetchPopularFilms from './js/api/fetchPopularFilms';
+
+fetchPopularFilms();
+// const container = document.getElementById('pagination');
+
+import './js/serch-by-name/serchName'

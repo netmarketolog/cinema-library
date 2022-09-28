@@ -32,7 +32,7 @@ export default function createPopularFilmsMarkup(films) {
 function getGenresOfFilm(film) {
   return film.genre_ids
     .map(id => {
-      for (genre of allGenres) {
+      for (let genre of allGenres) {
         if (id === genre.id) {
           return genre.name;
         }
