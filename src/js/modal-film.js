@@ -5,11 +5,10 @@ import getRefs from './getRefs';
 // Modal
 const refs = getRefs();
 
-  console.log(refs.movieEl)
 
- refs.movieEl.addEventListener("click", () => openModal(movie.filmId))
+//  refs.movieEl.addEventListener("click", () => openModal(movie.filmId))
 
-function openModal(id) {
+function openModal() {
 
     refs.modalEl.classList.remove("is-hidden");
 
