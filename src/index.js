@@ -7,3 +7,5 @@ fetchPopularFilms();
 
 import './js/serch-by-name/serchName'
 // import './js/modal-film'
+
+import './js/local-storage/addToLStorage'
