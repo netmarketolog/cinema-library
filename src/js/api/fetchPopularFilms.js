@@ -1,6 +1,5 @@
 import NewApiService from './apiFn';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.min.css';
 import createPopularFilmsMarkup from './renderMarkup';
 import getRefs from '../getRefs';
 
