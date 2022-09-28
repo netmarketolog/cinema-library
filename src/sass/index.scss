@@ -3,8 +3,12 @@
 @import './utils/breakpoints';
 //Loader (spinner) для асинхронних запитів
 @import './spinner';
+@import './header-myLibrary/librarry';
 // Базовые стили
 @import './base/container';
 @import './base/base';
+@import './layouts/header';
 // Секции и блоки
+// @import './layouts/films-collection';
 @import './layouts/collection-item';
+@import './layouts/modal-film';
