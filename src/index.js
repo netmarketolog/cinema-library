@@ -4,3 +4,5 @@ import fetchPopularFilms from './js/api/fetchPopularFilms';
 
 fetchPopularFilms();
 // const container = document.getElementById('pagination');
+
+import './js/serch-by-name/serchName'
