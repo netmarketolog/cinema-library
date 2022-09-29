@@ -1,6 +1,4 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
-const API_URL_MOVIE_DETAILS =
-  "https://api.themoviedb.org/3/movie/157336?api_key={'8fa17eefa9c2b424e1a30217c39bc412'}&append_to_response=videos";
 import getRefs from './getRefs';
 
 // Modal
@@ -8,7 +6,8 @@ const refs = getRefs();
 
 refs.popularFilmsList.addEventListener('click', e => {
   e.preventDefault();
-  console.dir(e.target);
+  console.log(e.target);
+  console.log(e.elements);
   const isCardMovie = e.target.closest('.card__item');
   if (!isCardMovie) {
     return;
@@ -23,23 +22,21 @@ refs.popularFilmsList.addEventListener('click', e => {
   });
 });
 
-async function openModal() {
-  // console.log(id);
-  // const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "X-API-KEY": API_KEY,
-  //   },
-  // });
-  // const respData = await resp.json();
+async function fetchDescr(filmId) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${filmId}?api_key=${API_KEY}&language=en-US`
+  );
+  const descriptionFilm = await response.json();
+  return descriptionFilm;
+}
 
-  refs.modalEl.classList.remove('is-hidden');
-  document.body.classList.add('no-scroll');
-
-  refs.modalRendEl.innerHTML = `<div class="film__poster">
+function openModal() {
+  fetchDescr().then(film => {
+    console.log(film);
+    refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
-          src="https://image.tmdb.org/t/p/w500//tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg"
-          alt=""
+          src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
+          alt="${film.original_title}"
           loading="lazy"
           class="film__img"
         />
@@ -84,6 +81,11 @@ async function openModal() {
             lead... they’ve been double crossed – but by who and how?
           </p>
         </div>`;
+  });
+
+  refs.modalEl.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+
   const btnClose = document.querySelector('.modal-film__close-btn');
   btnClose.addEventListener('click', () => closeModal());
 }
