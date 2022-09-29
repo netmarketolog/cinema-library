@@ -6,7 +6,23 @@ import getRefs from './getRefs';
 const refs = getRefs();
 
 
-//  refs.movieEl.addEventListener("click", () => openModal(movie.filmId))
+
+refs.popularFilmsList.addEventListener('click', e => {
+    e.preventDefault();
+    if (e.target.nodeName !== 'IMG') {
+      return;
+	}
+
+    // const selectedImage = e.target.getAttribute('data-source')
+
+  openModal();
+       
+    refs.popularFilmsList.addEventListener('keydown', e => {
+		if (e.key === 'Escape') {
+			closeModal();
+		}
+	})
+})
 
 function openModal() {
 
@@ -74,19 +90,12 @@ function openModal() {
 }
 
 function closeModal() {
-    modalEl.classList.add("is-hidden")
+    refs.modalEl.classList.add("is-hidden");
 }
 
 //close 
 window.addEventListener("click", (e) => {
-  if (e.target === modalEl) {
+  if (e.target === refs.modalEl) {
     closeModal();
   }
 })
-
-//close ESC
-// window.addEventListener("keydown", (e) => {
-//   if (e.keyCode === 27) {
-//     closeModal();
-//   }
-// })
