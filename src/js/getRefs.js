@@ -6,6 +6,10 @@ export default function getRefs() {
     movieEl: document.querySelector(".card__item"),
     watchedBtn: document.querySelector('[data-action="watched"]'),
     queueBtn: document.querySelector('[data-action="queue"]'),
+    modalRendEl: document.querySelector('.film__container'),
+    body: document.querySelector('body'),
+    modalTeamEl: document.querySelector ('.backdrop-team'),
+    modalTeamOpenBtn:document.querySelector ('.footer__team')
   };
   return refs;
 }

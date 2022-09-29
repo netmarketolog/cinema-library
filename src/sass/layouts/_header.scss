@@ -32,6 +32,10 @@
   }
 }
 
+.header__container {
+  position: relative;
+}
+
 .site-nav {
   display: flex;
   justify-content: space-between;

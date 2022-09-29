@@ -38,5 +38,6 @@ function getGenresOfFilm(film) {
         }
       }
     })
+    .slice(0, 3)
     .join(', ');
 }

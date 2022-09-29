@@ -1,13 +1,15 @@
 export default class NewApiService {
   constructor() {
-    // this.searchQuery = '';
-    this.page = 1;
+    this.searchQuery = '';
+    this._page = 1;
     this.totalFilms = null;
   }
 
-  async fetchArticles(page) {
+  async fetchArticles(URL, search) {
     const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
-    const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}`;
+    const url = `https://api.themoviedb.org/${URL}?api_key=${API_KEY}&language=en-US&page=${
+      this._page
+    }${search ? `&query=${this.searchQuery}` : ''}&include_adult=false`;
 
     const r = await fetch(url);
     const data = await r.json();
@@ -20,11 +22,28 @@ export default class NewApiService {
     return r.results;
   }
 
-  // get page() {
-  //   return this.page;
-  // }
+  get allFilms() {
+    return this.totalFilms;
+  }
 
-  // set page(newPage) {
-  //   this.page = newPage;
-  // }
+  get page() {
+    return this._page;
+  }
+
+  set page(newPage) {
+    this._page = newPage;
+  }
+
+  resetPage() {
+    this.page = 1;
+    this.totalPages = null;
+  }
+
+  get query() {
+    return this.searchQuery;
+  }
+
+  set query(newQuery) {
+    this.searchQuery = newQuery;
+  }
 }
