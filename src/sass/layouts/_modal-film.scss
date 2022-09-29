@@ -190,6 +190,7 @@
   line-height: 1.67;
 }
 .film__btns {
+  // position: absolute;
   display: flex;
   justify-content: center;
 
@@ -287,3 +288,7 @@
 // .film__play-img:hover {
 //   transform: scale(1.15);
 // }
+
+.no-scroll {
+  overflow: hidden;
+}

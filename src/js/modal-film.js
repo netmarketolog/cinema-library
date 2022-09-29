@@ -1,32 +1,48 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
+const API_URL_MOVIE_DETAILS =
+  "https://api.themoviedb.org/3/movie/157336?api_key={'8fa17eefa9c2b424e1a30217c39bc412'}&append_to_response=videos";
 import getRefs from './getRefs';
-
 
 // Modal
 const refs = getRefs();
 
+refs.popularFilmsList.addEventListener('click', e => {
+  e.preventDefault();
+  console.dir(e.target);
+  const isCardMovie = e.target.closest('.card__item');
+  if (!isCardMovie) {
+    return;
+  }
 
-//  refs.movieEl.addEventListener("click", () => openModal(movie.filmId))
+  openModal();
 
-function openModal() {
+  refs.popularFilmsList.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+});
 
-    refs.modalEl.classList.remove("is-hidden");
+async function openModal() {
+  // console.log(id);
+  // const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "X-API-KEY": API_KEY,
+  //   },
+  // });
+  // const respData = await resp.json();
 
-    refs.modalEl.innerHTML = `
-        <div class="film__poster">
+  refs.modalEl.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+
+  refs.modalRendEl.innerHTML = `<div class="film__poster">
         <img
-          src="./images/modal-film-poster.jpg"
+          src="https://image.tmdb.org/t/p/w500//tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg"
           alt=""
           loading="lazy"
           class="film__img"
         />
-        <!-- <div class="film__overlay">
-          <img
-            src="./images/modal-film-poster-play-button.png"
-            alt="icon play"
-            class="film__play-img"
-          />
-        </div> -->
       </div>
       <div class="film__info">
         <h2 class="film__title">A FISTFUL OF LEAD</h2>
@@ -67,26 +83,19 @@ function openModal() {
             bad to worse as they realise the bags of gold are filled with
             lead... they’ve been double crossed – but by who and how?
           </p>
-        </div>
-        `
-    const btnClose = document.querySelector(".modal-film__close-btn")
-    btnClose.addEventListener("click", () => closeModal())
+        </div>`;
+  const btnClose = document.querySelector('.modal-film__close-btn');
+  btnClose.addEventListener('click', () => closeModal());
 }
 
 function closeModal() {
-    modalEl.classList.add("is-hidden")
+  refs.modalEl.classList.add('is-hidden');
+  document.body.classList.remove('no-scroll');
 }
 
-//close 
-window.addEventListener("click", (e) => {
-  if (e.target === modalEl) {
+//close
+window.addEventListener('click', e => {
+  if (e.target === refs.modalEl) {
     closeModal();
   }
-})
-
-//close ESC
-// window.addEventListener("keydown", (e) => {
-//   if (e.keyCode === 27) {
-//     closeModal();
-//   }
-// })
+});
