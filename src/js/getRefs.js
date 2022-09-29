@@ -5,6 +5,7 @@ export default function getRefs() {
     modalEl: document.querySelector('.backdrop-film'),
     movieEl: document.querySelector(".card__item"),
     modalRendEl: document.querySelector('.film__container'),
+    body: document.querySelector('body'),
   };
   return refs;
 }

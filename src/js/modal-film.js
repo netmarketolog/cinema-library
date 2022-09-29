@@ -26,23 +26,17 @@ refs.popularFilmsList.addEventListener('click', e => {
 
 function openModal() {
 
-    refs.modalEl.classList.remove("is-hidden");
+  refs.modalEl.classList.remove("is-hidden");
+  document.body.classList.add("no-scroll");
 
       refs.modalRendEl.innerHTML = `
         <div class="film__poster">
         <img
-          src="./images/modal-film-poster.jpg"
+          src="https://image.tmdb.org/t/p/w500//tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg"
           alt=""
           loading="lazy"
           class="film__img"
         />
-        <!-- <div class="film__overlay">
-          <img
-            src="./images/modal-film-poster-play-button.png"
-            alt="icon play"
-            class="film__play-img"
-          />
-        </div> -->
       </div>
       <div class="film__info">
         <h2 class="film__title">A FISTFUL OF LEAD</h2>
@@ -84,13 +78,22 @@ function openModal() {
             lead... they’ve been double crossed – but by who and how?
           </p>
         </div>
+        <div class="film__btns">
+          <button type="button" class="film__btn film__btn--add" data-addToWatched>
+            add to watched
+          </button>
+          <button type="button" class="film__btn film__btn--add" data-addToQueue>
+            add to queue
+          </button>
+        </div>
         `
     const btnClose = document.querySelector(".modal-film__close-btn")
     btnClose.addEventListener("click", () => closeModal())
 }
 
 function closeModal() {
-    refs.modalEl.classList.add("is-hidden");
+  refs.modalEl.classList.add("is-hidden");
+  document.body.classList.remove("no-scroll");
 }
 
 //close 
