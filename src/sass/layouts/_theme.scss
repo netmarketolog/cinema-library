@@ -1,0 +1,38 @@
+body.light-theme {
+  background-color: #fff;
+  color: #333;
+}
+
+body.dark-theme {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-theme {
+  .card__title {
+    color: #fff;
+  }
+  .footer {
+    background-color: #413e3e;
+  }
+  .footer__message {
+    color: #fff;
+  }
+  .footer__team {
+    color: rgb(255, 174, 0);
+  }
+  .modal-film,
+  .modal-team {
+    background-color: #333;
+    color: #fff;
+  }
+  .film__votes {
+    color: #000;
+  }
+  .modal-film__close-btn {
+    fill: #fff;
+  }
+  .modal-film__close-btn:hover {
+    fill: #ff6b01;
+  }
+}
