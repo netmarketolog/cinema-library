@@ -66,17 +66,13 @@
   }
 }
 .team__name {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
   text-align: center;
   margin-bottom: 10px;
 }
 .team__slogan,
 .team__role {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
   text-align: center;
-  color: gray;
+  color: #ff6b08
 }
 .team__list {
   display: flex;
@@ -87,5 +83,5 @@
   width: 200px;
   height: 214px;
   padding: 14px 5px 10px 5px;
-  border-radius: 100%;
+  border-radius: 50%;
 }

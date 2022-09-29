@@ -8,7 +8,8 @@ refs.modalTeamOpenBtn.addEventListener ('click', openModalTeam)
 function closeModalTeam () {
   refs.modalTeamEl.classList.add ("is-hidden")
 }
-function openModalTeam () {
+function openModalTeam (e) {
+  e.preventDefault()
   refs.modalTeamEl.classList.remove ("is-hidden")
 }
 
