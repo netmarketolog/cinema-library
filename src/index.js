@@ -5,8 +5,12 @@ import fetchPopularFilms from './js/api/fetchPopularFilms';
 fetchPopularFilms();
 // const container = document.getElementById('pagination');
 
-import './js/search-by-name/searchName'
-// import './js/modal-film'
-import './js/modal-team'
 
+import './js/theme-switch';
+import './js/serch-by-name/serchName'
+
+import './js/modal-film'
+import './js/modal-team'
 import './js/local-storage/addToLStorage'
+
+
