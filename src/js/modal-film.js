@@ -1,12 +1,19 @@
-<div class="backdrop-film is-hidden">
-  <div class="modal-film">
-    <button type="button" class="modal-film__close-btn">
-      <svg class="modal-film__close-icon" width="14" height="14">
-        <use href="./images/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
-    <div class="film__container">
-      <div class="film__poster">
+const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
+import getRefs from './getRefs';
+
+
+// Modal
+const refs = getRefs();
+
+
+//  refs.movieEl.addEventListener("click", () => openModal(movie.filmId))
+
+function openModal() {
+
+    refs.modalEl.classList.remove("is-hidden");
+
+    refs.modalEl.innerHTML = `
+        <div class="film__poster">
         <img
           src="./images/modal-film-poster.jpg"
           alt=""
@@ -61,16 +68,25 @@
             lead... they’ve been double crossed – but by who and how?
           </p>
         </div>
-        <div class="film__btns">
-          <!--class="film__btn--add film__btn--remove" -->
-          <button type="button" class="film__btn film__btn--add" data-addToWatched>
-            add to watched
-          </button>
-          <button type="button" class="film__btn film__btn--add" data-addToQueue>
-            add to queue
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        `
+    const btnClose = document.querySelector(".modal-film__close-btn")
+    btnClose.addEventListener("click", () => closeModal())
+}
+
+function closeModal() {
+    modalEl.classList.add("is-hidden")
+}
+
+//close 
+window.addEventListener("click", (e) => {
+  if (e.target === modalEl) {
+    closeModal();
+  }
+})
+
+//close ESC
+// window.addEventListener("keydown", (e) => {
+//   if (e.keyCode === 27) {
+//     closeModal();
+//   }
+// })

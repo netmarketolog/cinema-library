@@ -8,11 +8,11 @@
   background-color: rgba(0, 0, 0, 0.25);
   opacity: 1;
 
+  
   transition-property: opacity, visibility;
   transition-duration: 250ms;
   transition-timing-function: linear;
 }
-
 .modal-team {
   position: absolute;
   top: 50%;
@@ -38,7 +38,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    width: 806px;
+    width: 1100px;
     min-height: 558px;
 
     padding: 40px 12px;
@@ -65,12 +65,27 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-
+.team__name {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.team__slogan,
+.team__role {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  color: gray;
+}
 .team__list {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .team__img {
   width: 200px;
+  height: 214px;
   padding: 14px 5px 10px 5px;
+  border-radius: 100%;
 }

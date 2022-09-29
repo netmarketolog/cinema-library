@@ -9,6 +9,7 @@
   }
 }
 .container__main--content {
+  min-height: 50vh;
   @media screen and (min-width: $mobile) {
     padding-bottom: 40px;
     padding-top: 20px;
