@@ -80,9 +80,14 @@
   flex-direction: column;
   align-items: center;
 
+  margin-bottom: 20px;
+
   @media screen and (min-width: $tablet) {
     flex-direction: row;
     align-items: normal;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 0;
   }
 }
 .film__poster {
@@ -173,9 +178,6 @@
 
   text-align: center;
 }
-.film__about {
-  margin-bottom: 20px;
-}
 .film__about-title {
   margin-bottom: 8px;
 
@@ -190,12 +192,17 @@
   line-height: 1.67;
 }
 .film__btns {
-  // position: absolute;
   display: flex;
   justify-content: center;
 
+  @media screen and (min-width: $tablet) {
+    justify-content: flex-end;
+  }
+
   @media screen and (min-width: $desktop) {
-    justify-content: flex-start;
+    position: absolute;
+    bottom: 40px;
+    left: 400px;
   }
 }
 .film__btn {
