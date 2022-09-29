@@ -3,7 +3,6 @@ export default class NewApiService {
     this.searchQuery = '';
     this._page = 1;
     this.totalFilms = null;
-    this.URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=8fa17eefa9c2b424e1a30217c39bc412&page=${this._page}`;
   }
 
   async fetchArticles(URL, search) {
@@ -23,8 +22,8 @@ export default class NewApiService {
     return r.results;
   }
 
-  get popularUrl() {
-    return this.URL_POPULAR;
+  get allFilms() {
+    return this.totalFilms;
   }
 
   get page() {

@@ -1,6 +1,4 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
-const API_URL_MOVIE_DETAILS =
-  "https://api.themoviedb.org/3/movie/157336?api_key={'8fa17eefa9c2b424e1a30217c39bc412'}&append_to_response=videos";
 import getRefs from './getRefs';
 
 // Modal
@@ -8,13 +6,13 @@ const refs = getRefs();
 
 refs.popularFilmsList.addEventListener('click', e => {
   e.preventDefault();
-  console.dir(e.target);
   const isCardMovie = e.target.closest('.card__item');
+  // console.log(isCardMovie.id);
   if (!isCardMovie) {
     return;
   }
 
-  openModal();
+  openModal(isCardMovie.id);
 
   refs.popularFilmsList.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
@@ -23,67 +21,65 @@ refs.popularFilmsList.addEventListener('click', e => {
   });
 });
 
-async function openModal() {
-  // console.log(id);
-  // const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "X-API-KEY": API_KEY,
-  //   },
-  // });
-  // const respData = await resp.json();
+async function fetchDescr(filmId) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${filmId}?api_key=${API_KEY}&language=en-US`
+  );
+  const descriptionFilm = await response.json();
+  return descriptionFilm;
+}
 
-  refs.modalEl.classList.remove('is-hidden');
-  document.body.classList.add('no-scroll');
-
-  refs.modalRendEl.innerHTML = `<div class="film__poster">
+function openModal(movie) {
+  fetchDescr(movie).then(film => {
+    console.log(film);
+    refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
-          src="https://image.tmdb.org/t/p/w500//tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg"
-          alt=""
+          src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
+          alt="${film.original_title}"
           loading="lazy"
           class="film__img"
         />
       </div>
       <div class="film__info">
-        <h2 class="film__title">A FISTFUL OF LEAD</h2>
+        <h2 class="film__title">${film.original_title}</h2>
         <div class="film__description">
           <table>
             <tbody>
               <tr>
                 <th class="film__attribute">Vote / Votes</th>
                 <td class="film__att-value">
-                  <span class="film__vote">7.3</span> /
-                  <span class="film__votes">1260</span>
+                  <span class="film__vote">${film.vote_average.toFixed(
+                    1
+                  )}</span> /
+                  <span class="film__votes">${film.vote_count}</span>
                 </td>
               </tr>
               <tr>
                 <th class="film__attribute">Popularity</th>
-                <td class="film__att-value">100.2</td>
+                <td class="film__att-value">${film.popularity.toFixed(1)}</td>
               </tr>
               <tr>
                 <th class="film__attribute">Original Title</th>
-                <td class="film__att-value">A FISTFUL OF LEAD</td>
+                <td class="film__att-value">${film.original_title}</td>
               </tr>
               <tr>
                 <th class="film__attribute">Genre</th>
-                <td class="film__att-value">Western</td>
+                <td class="film__att-value">${film.genres
+                  .map(genre => genre.name)
+                  .join(', ')}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="film__about">
           <h3 class="film__about-title">About</h3>
-          <p class="film__text">
-            Four of the West’s most infamous outlaws assemble to steal a huge
-            stash of gold from the most corrupt settlement of the gold rush
-            towns. But not all goes to plan one is killed and the other three
-            escapes with bags of gold hide out in the abandoned gold mine where
-            they happen across another gang of three – who themselves were
-            planning to hit the very same bank! As tensions rise, things go from
-            bad to worse as they realise the bags of gold are filled with
-            lead... they’ve been double crossed – but by who and how?
-          </p>
+          <p class="film__text">${film.overview}</p>
         </div>`;
+  });
+
+  refs.modalEl.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+
   const btnClose = document.querySelector('.modal-film__close-btn');
   btnClose.addEventListener('click', () => closeModal());
 }
