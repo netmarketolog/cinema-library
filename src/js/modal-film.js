@@ -1,36 +1,42 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
+const API_URL_MOVIE_DETAILS =
+  "https://api.themoviedb.org/3/movie/157336?api_key={'8fa17eefa9c2b424e1a30217c39bc412'}&append_to_response=videos";
 import getRefs from './getRefs';
-
 
 // Modal
 const refs = getRefs();
 
-
-
 refs.popularFilmsList.addEventListener('click', e => {
-    e.preventDefault();
-    if (e.target.nodeName !== 'IMG') {
-      return;
-	}
-
-    // const selectedImage = e.target.getAttribute('data-source')
+  e.preventDefault();
+  console.dir(e.target);
+  const isCardMovie = e.target.closest('.card__item');
+  if (!isCardMovie) {
+    return;
+  }
 
   openModal();
-       
-    refs.popularFilmsList.addEventListener('keydown', e => {
-		if (e.key === 'Escape') {
-			closeModal();
-		}
-	})
-})
 
-function openModal() {
+  refs.popularFilmsList.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+});
 
-  refs.modalEl.classList.remove("is-hidden");
-  document.body.classList.add("no-scroll");
+async function openModal() {
+  // console.log(id);
+  // const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "X-API-KEY": API_KEY,
+  //   },
+  // });
+  // const respData = await resp.json();
 
-      refs.modalRendEl.innerHTML = `
-        <div class="film__poster">
+  refs.modalEl.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+
+  refs.modalRendEl.innerHTML = `<div class="film__poster">
         <img
           src="https://image.tmdb.org/t/p/w500//tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg"
           alt=""
@@ -77,28 +83,19 @@ function openModal() {
             bad to worse as they realise the bags of gold are filled with
             lead... they’ve been double crossed – but by who and how?
           </p>
-        </div>
-        <div class="film__btns">
-          <button type="button" class="film__btn film__btn--add" data-addToWatched>
-            add to watched
-          </button>
-          <button type="button" class="film__btn film__btn--add" data-addToQueue>
-            add to queue
-          </button>
-        </div>
-        `
-    const btnClose = document.querySelector(".modal-film__close-btn")
-    btnClose.addEventListener("click", () => closeModal())
+        </div>`;
+  const btnClose = document.querySelector('.modal-film__close-btn');
+  btnClose.addEventListener('click', () => closeModal());
 }
 
 function closeModal() {
-  refs.modalEl.classList.add("is-hidden");
-  document.body.classList.remove("no-scroll");
+  refs.modalEl.classList.add('is-hidden');
+  document.body.classList.remove('no-scroll');
 }
 
-//close 
-window.addEventListener("click", (e) => {
+//close
+window.addEventListener('click', e => {
   if (e.target === refs.modalEl) {
     closeModal();
   }
-})
+});
