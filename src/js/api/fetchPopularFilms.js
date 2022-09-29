@@ -7,8 +7,10 @@ export default function fetchPopularFilms() {
   const refs = getRefs();
   refs.spinner.classList.remove('is-hidden');
   const filmsPopular = new NewApiService();
+  const url = '3/trending/movie/week';
+  console.log(url);
   filmsPopular
-    .fetchArticles(1)
+    .fetchArticles(url, false)
     .then(r => {
       createPopularFilmsMarkup(r);
       const pagination = new Pagination('pagination', {
@@ -19,8 +21,8 @@ export default function fetchPopularFilms() {
       });
       pagination.on('beforeMove', function (e) {
         refs.spinner.classList.remove('is-hidden');
-        const newPage = e.page;
-        filmsPopular.fetchArticles(newPage).then(r => {
+        filmsPopular.page = e.page;
+        filmsPopular.fetchArticles(url).then(r => {
           createPopularFilmsMarkup(r);
           refs.spinner.classList.add('is-hidden');
         });
