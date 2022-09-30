@@ -57,13 +57,19 @@
     align-items: center;
 
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid transparent;
     border-radius: 50%;
     cursor: pointer;
 
     transition-property: fill, border-color;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      cursor: pointer;
+      border-color: #ff6b01;
+      fill: #ff6b01;
+    }
   }
 }
 .team__name {
@@ -85,4 +91,13 @@
   height: 214px;
   padding: 14px 5px 10px 5px;
   border-radius: 50%;
+}
+
+.team__item {
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+    transform: scale(1.025);
+  }
+  cursor: pointer;
 }
