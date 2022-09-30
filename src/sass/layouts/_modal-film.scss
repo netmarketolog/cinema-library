@@ -45,7 +45,7 @@
     width: 806px;
     min-height: 558px;
 
-    padding: 40px 12px;
+    padding: 40px 50px 40px 16px;
   }
 
   &__close-btn {
@@ -109,7 +109,7 @@
     height: 374px;
   }
   @media screen and (min-width: $desktop) {
-    margin-right: 16px;
+    margin-right: 34px;
 
     width: 375px;
     height: 478px;
