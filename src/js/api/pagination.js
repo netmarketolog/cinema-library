@@ -24,6 +24,9 @@ export default function createPagination(totalPages, page, element) {
 
   if (page === 1) {
     afterPage = afterPage + 2;
+    if (totalPages === 3) {
+      afterPage = page + 1;
+    }
   } else if (page === 2) {
     afterPage = afterPage + 1;
   } else if (page === 3) {

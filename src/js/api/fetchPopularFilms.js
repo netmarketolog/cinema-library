@@ -8,6 +8,7 @@ export default function fetchPopularFilms() {
   refs.spinner.classList.remove('is-hidden');
   const filmsPopular = new NewApiService();
   const url = '3/trending/movie/week';
+  const searchForm = document.querySelector('#search-form');
 
   filmsPopular
     .fetchArticles(url)
@@ -23,11 +24,7 @@ export default function fetchPopularFilms() {
       );
 
       refs.paginationEl.addEventListener('click', onPageBtnClick);
-      if (filmsPopular.search) {
-        refs.paginationEl.removeEventListener('click', onPageBtnClick);
-        console.log('dwqqge');
-      }
-      console.log(filmsPopular.search);
+
       function onPageBtnClick(e) {
         const _page = e.target.closest('li.numb');
         if (!_page) return;
@@ -50,6 +47,11 @@ export default function fetchPopularFilms() {
         );
       }
       refs.spinner.classList.add('is-hidden');
+      searchForm.addEventListener('submit', onFormSubmit);
+      function onFormSubmit() {
+        refs.paginationEl.removeEventListener('click', onPageBtnClick);
+        searchForm.removeEventListener('submit', onFormSubmit);
+      }
     })
     .catch(console.log);
 }
