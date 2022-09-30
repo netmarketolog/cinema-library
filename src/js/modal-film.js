@@ -31,7 +31,6 @@ async function fetchDescr(filmId) {
 
 function openModal(movie) {
   fetchDescr(movie).then(film => {
-    console.log(film);
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
           src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
@@ -75,6 +74,24 @@ function openModal(movie) {
           <h3 class="film__about-title">About</h3>
           <p class="film__text">${film.overview}</p>
         </div>`;
+    // Константи
+    // Шлях до кнопок
+    const addToQueueBtn = document.querySelector('[data-addToQueue]');
+    const addToWatchedBtn = document.querySelector('[data-addToWatched]');
+
+    // Слухачі подій
+    addToQueueBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onQueueBtn(film);
+      }, 500)
+    );
+    addToWatchedBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onWatchedBtn(film);
+      }, 500)
+    );
   });
 
   refs.modalEl.classList.remove('is-hidden');
