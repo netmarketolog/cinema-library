@@ -60,4 +60,4 @@ function onSearch(e) {
 
 function typeSomething() {
   Notiflix.Notify.info(`Please type something`);
-}
+};
