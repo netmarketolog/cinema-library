@@ -1,61 +1,56 @@
-// Встановлення throttle
+// Імпорт
+// import getRefs from '../getRefs';
 
-import throttle from 'lodash.throttle';
+// Встановлення throttle
+// import throttle from 'lodash.throttle';
+
+// Слухачі подій
+// const refs = getRefs();
+// refs.addToQueueBtn.addEventListener('click', throttle(onQueueBtn, 500));
+// refs.addToWatchedBtn.addEventListener('click', throttle(onWatchedBtn, 500));
 
 // Константи
-const KEY_QUEUE = 'queue';
-const KEY_WATCHED = 'watched';
+// const KEY_QUEUE = 'queue';
+// const KEY_WATCHED = 'watched';
+
 let queueList = [];
 let watchedList = [];
 
-// Шлях до кнопок
-const addToQueueBtn = document.querySelector("[data-addToQueue]");
-const addToWatchedBtn = document.querySelector("[data-addToWatched]");
-
-// Слухачі подій
-addToQueueBtn.addEventListener('click', throttle(onQueueBtn, 500));
-addToWatchedBtn.addEventListener('click', throttle(onWatchedBtn, 500));
-
 // Функція для роботи зі сховищем
 // Функція додавання фільмів до черги
-function onQueueBtn () {
-    let id = addToQueueBtn.dataset.action;
-    console.log(id);
-    if (queueList === []) {
-        queueList = id;
-    }
-    if (queueList.includes(id)) {
-        return;
-    } else {
-        queueList.push(id);
-    }
-    // const saveQueueFilms = localStorage.getItem(KEY_QUEUE);
-    // const parseQueueFilms = JSON.parse(saveQueueFilms);
-    // console.log(parseQueueFilms);
-    localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
+function onQueueBtn(film) {
+  const KEY_QUEUE = 'queue';
+  if (queueList.includes(film)) {
+    return;
+  } else {
+    queueList.push(film);
+  }
+  localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
 }
 // Функція додавання переглянутих фільмів
-function onWatchedBtn () {
-    let id = addToWatchedBtn.dataset.action;
-    console.log(id);
-    if (watchedList.includes(id)) {
-        return;
-    }
-    if (queueList.includes(id)) {
-        const indexId = queueList.indexOf(id);
-        console.log(indexId);
-        queueList = queueList.splice(indexId, 1);
-        const saveQueueFilms = localStorage.getItem(KEY_QUEUE);
-        const parseQueueFilms = JSON.parse(saveQueueFilms);
-        const indexIdStorage = parseQueueFilms.indexOf(id);
-        localStorage.setItem(KEY_QUEUE, JSON.stringify(indexIdStorage.splice(indexId, 1)));
-        console.log(parseQueueFilms);
-        console.log(queueList);
-    }
-    if (watchedList === []) {
-        watchedList = id;
-    } else { 
-        watchedList.push(id);
-    }
-    localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+function onWatchedBtn(film) {
+  const KEY_WATCHED = 'watched';
+  // const KEY_QUEUE = 'queue';
+  if (watchedList.includes(film)) {
+    return;
+  }
+  else {
+    // const saveQueueFilms = localStorage.getItem(KEY_QUEUE);
+    // const parseQueueFilms = JSON.parse(saveQueueFilms);
+    // // const queueFilmsID = parseQueueFilms.map(film.id)
+
+    // if (film === parseQueueFilms.includes(film)) {
+    // const indexFilm = parseQueueFilms.indexOf(film);
+    // const overwriting = parseQueueFilms.splice(indexFilm, 1);
+    // localStorage.setItem(KEY_QUEUE, JSON.stringify(overwriting));
+    
+    // }
+    watchedList.push(film);
+  }
+
+  localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+  // console.log(parseQueueFilms);
+
 }
+
+export { onQueueBtn, onWatchedBtn };

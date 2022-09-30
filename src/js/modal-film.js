@@ -1,5 +1,7 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
+import {onQueueBtn, onWatchedBtn} from './local-storage/addToLStorage';
+import throttle from 'lodash.throttle';
 
 // Modal
 const refs = getRefs();
@@ -31,7 +33,11 @@ async function fetchDescr(filmId) {
 
 function openModal(movie) {
   fetchDescr(movie).then(film => {
-    console.log(film);
+    // console.log(film);
+    
+    refs.addToWatchedBtn.addEventListener('click', throttle(() => { onWatchedBtn(film) }, 500));
+    refs.addToQueueBtn.addEventListener('click', throttle(() => {onQueueBtn(film)}, 500));
+    
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
           src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
@@ -76,6 +82,8 @@ function openModal(movie) {
           <p class="film__text">${film.overview}</p>
         </div>`;
   });
+
+  
 
   refs.modalEl.classList.remove('is-hidden');
   document.body.classList.add('no-scroll');

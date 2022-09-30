@@ -9,7 +9,9 @@ export default function getRefs() {
     modalRendEl: document.querySelector('.film__container'),
     body: document.querySelector('body'),
     modalTeamEl: document.querySelector ('.backdrop-team'),
-    modalTeamOpenBtn:document.querySelector ('.footer__team')
+    modalTeamOpenBtn: document.querySelector('.footer__team'),
+    addToQueueBtn: document.querySelector("[data-addToQueue]"),
+    addToWatchedBtn: document.querySelector("[data-addToWatched]"),
   };
   return refs;
 }
