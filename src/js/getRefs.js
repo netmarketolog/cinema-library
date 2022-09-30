@@ -9,7 +9,8 @@ export default function getRefs() {
     modalRendEl: document.querySelector('.film__container'),
     body: document.querySelector('body'),
     modalTeamEl: document.querySelector ('.backdrop-team'),
-    modalTeamOpenBtn:document.querySelector ('.footer__team')
+    modalTeamOpenBtn: document.querySelector ('[data-action="team-open-modal"]'),
+    modalTeamCloseBtn: document.querySelector ('[data-action="team-close-modal"]')
   };
   return refs;
 }
