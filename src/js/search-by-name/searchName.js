@@ -13,6 +13,7 @@ const errorMs = document.querySelector('.error-search');
 searchForm.addEventListener(`submit`, onSearch);
 function onSearch(e) {
   e.preventDefault();
+  filmApiService.seach = true;
   filmApiService.query = e.currentTarget.elements.searchQuery.value.trim();
   filmApiService.resetPage();
   if (filmApiService.query === '') {
@@ -20,44 +21,46 @@ function onSearch(e) {
   }
   searchForm.reset();
   const url = '3/search/movie';
-  filmApiService.fetchArticles(url, true).then(r => {
-    if (filmApiService.allFilms === 0) {
-      // return Notify.failure(
-      //   'Search result not succsessful. Enter the correct movie name and try again!'
-      // )
-      return errorMs.classList.remove('is-hidden');
-    }
-    errorMs.classList.add('is-hidden');
-    createPopularFilmsMarkup(r);
-    let totalPages = filmApiService.allFilms / 20;
-    let page = filmApiService.page;
-
-    refs.paginationEl.innerHTML = createPagination(
-      totalPages,
-      page,
-      refs.paginationEl
-    );
-    refs.paginationEl.addEventListener('click', e => {
-      refs.spinner.classList.remove('is-hidden');
-      const _page = e.target.closest('li');
-
-      filmApiService.page = Number(_page.id);
-      filmApiService.fetchArticles(url, true).then(r => {
-        createPopularFilmsMarkup(r);
-        refs.spinner.classList.add('is-hidden');
-      });
+  filmApiService
+    .fetchArticles(url, true)
+    .then(r => {
+      if (filmApiService.allFilms === 0) {
+        // return Notify.failure(
+        //   'Search result not succsessful. Enter the correct movie name and try again!'
+        // )
+        return errorMs.classList.remove('is-hidden');
+      }
+      errorMs.classList.add('is-hidden');
+      createPopularFilmsMarkup(r);
+      let totalPages = Math.ceil(filmApiService.allFilms / 20);
+      let page = filmApiService.page;
 
       refs.paginationEl.innerHTML = createPagination(
         totalPages,
-        Number(_page.id),
+        page,
         refs.paginationEl
       );
-    });
-    refs.spinner.classList.add('is-hidden');
-  })
-  .catch(console.log);
-};
+      refs.paginationEl.addEventListener('click', e => {
+        refs.spinner.classList.remove('is-hidden');
+        const _page = e.target.closest('li');
+
+        filmApiService.page = Number(_page.id);
+        filmApiService.fetchArticles(url, true).then(r => {
+          createPopularFilmsMarkup(r);
+          refs.spinner.classList.add('is-hidden');
+        });
+
+        refs.paginationEl.innerHTML = createPagination(
+          totalPages,
+          Number(_page.id),
+          refs.paginationEl
+        );
+      });
+      refs.spinner.classList.add('is-hidden');
+    })
+    .catch(console.log);
+}
 
 function typeSomething() {
   Notiflix.Notify.info(`Please type something`);
-};
+}

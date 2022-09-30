@@ -13,7 +13,7 @@ export default function fetchPopularFilms() {
     .fetchArticles(url)
     .then(r => {
       createPopularFilmsMarkup(r);
-      let totalPages = filmsPopular.allFilms / 20;
+      let totalPages = Math.ceil(filmsPopular.allFilms / 20);
       let page = filmsPopular.page;
 
       refs.paginationEl.innerHTML = createPagination(
@@ -22,10 +22,20 @@ export default function fetchPopularFilms() {
         refs.paginationEl
       );
 
-      refs.paginationEl.addEventListener('click', e => {
-        // e.preventDefault();
+      refs.paginationEl.addEventListener('click', onPageBtnClick);
+      if (filmsPopular.search) {
+        refs.paginationEl.removeEventListener('click', onPageBtnClick);
+        console.log('dwqqge');
+      }
+      console.log(filmsPopular.search);
+      function onPageBtnClick(e) {
+        const _page = e.target.closest('li.numb');
+        if (!_page) return;
+        // if (e.target.nodeName === 'UL') return console.log(e.target.nodeName);
+        window.scrollTo({
+          top: 0,
+        });
         refs.spinner.classList.remove('is-hidden');
-        const _page = e.target.closest('li');
 
         filmsPopular.page = Number(_page.id);
         filmsPopular.fetchArticles(url).then(r => {
@@ -38,7 +48,7 @@ export default function fetchPopularFilms() {
           Number(_page.id),
           refs.paginationEl
         );
-      });
+      }
       refs.spinner.classList.add('is-hidden');
     })
     .catch(console.log);

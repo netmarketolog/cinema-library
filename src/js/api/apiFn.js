@@ -3,6 +3,7 @@ export default class NewApiService {
     this.searchQuery = '';
     this._page = 1;
     this.totalFilms = null;
+    this.isSearch = false;
   }
 
   async fetchArticles(URL, search) {
@@ -20,6 +21,13 @@ export default class NewApiService {
   getArrayOfFilms(r) {
     this.totalFilms = r.total_results;
     return r.results;
+  }
+
+  get search() {
+    return this.isSearch;
+  }
+  set search(newSearch) {
+    this.isSearch = newSearch;
   }
 
   get allFilms() {

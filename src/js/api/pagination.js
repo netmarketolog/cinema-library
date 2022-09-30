@@ -4,7 +4,7 @@ export default function createPagination(totalPages, page, element) {
   let beforePage = page - 2;
   let afterPage = page + 2;
   if (page > 4) {
-    liTag += `<li class="btn prev" id=${
+    liTag += `<li class="btn prev numb" id=${
       page - 1
     }><span><i class="fas fa-angle-left"></i> Prev</span></li>`;
   }
@@ -54,7 +54,7 @@ export default function createPagination(totalPages, page, element) {
     liTag += `<li class="last numb" id=${totalPages}><span>${totalPages}</span></li>`;
   }
   if (page < totalPages - 3) {
-    liTag += `<li class="btn next" id=${
+    liTag += `<li class="btn next numb" id=${
       page + 1
     }><span>Next <i class="fas fa-angle-right"></i></span></li>`;
   }

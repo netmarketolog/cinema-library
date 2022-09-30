@@ -42,9 +42,10 @@
   font-size: 11px;
   cursor: default;
 }
-.pagination ul li.btn {
+.pagination ul li.btn.numb {
   padding: 0 10px;
   border-radius: 50px;
+  width: 40px;
 }
 .pagination li.active,
 .pagination ul li.numb:hover,
@@ -52,6 +53,9 @@
 .pagination ul li:last-child:hover {
   color: #fff;
   background: #ff6b08;
+}
+.pagination .btn.next {
+  margin-left: 5px;
 }
 
 @media screen and (min-width: $tablet) {
@@ -73,14 +77,22 @@
   .pagination ul li.btn {
     padding: 0 15px;
   }
+  .pagination ul li.btn.numb {
+    padding: 0 15px;
+    width: 60px;
+  }
 }
 
 @media screen and (min-width: $desktop) {
+  .pagination {
+    margin-top: 80px;
+  }
   .pagination ul li {
     line-height: 45px;
     font-size: 18px;
   }
   .pagination ul li.numb {
+    overflow: hidden;
     height: 45px;
     width: 45px;
     margin: 0 3px;
@@ -90,10 +102,8 @@
   .pagination ul li.dots {
     font-size: 22px;
   }
-  .pagination ul li.btn {
+  .pagination ul li.btn.numb {
     padding: 0 20px;
-  }
-  .pagination .btn.next {
-    margin-left: 5px;
+    width: 80px;
   }
 }
