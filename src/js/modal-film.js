@@ -33,8 +33,6 @@ async function fetchDescr(filmId) {
 
 function openModal(movie) {
   fetchDescr(movie).then(film => {
-    // console.log(film);
-    
     refs.addToWatchedBtn.addEventListener('click', throttle(() => { onWatchedBtn(film) }, 500));
     refs.addToQueueBtn.addEventListener('click', throttle(() => {onQueueBtn(film)}, 500));
     
@@ -81,6 +79,24 @@ function openModal(movie) {
           <h3 class="film__about-title">About</h3>
           <p class="film__text">${film.overview}</p>
         </div>`;
+    // Константи
+    // Шлях до кнопок
+    const addToQueueBtn = document.querySelector('[data-addToQueue]');
+    const addToWatchedBtn = document.querySelector('[data-addToWatched]');
+
+    // Слухачі подій
+    addToQueueBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onQueueBtn(film);
+      }, 500)
+    );
+    addToWatchedBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onWatchedBtn(film);
+      }, 500)
+    );
   });
 
   
