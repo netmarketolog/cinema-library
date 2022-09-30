@@ -1,6 +1,6 @@
 import NewApiService from '../api/apiFn';
 import createPopularFilmsMarkup from '../api/renderMarkup';
-import Pagination from 'tui-pagination';
+import createPagination from '../api/pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from '../getRefs';
 import Notiflix from 'notiflix';
@@ -27,24 +27,37 @@ function onSearch(e) {
       // )
       return errorMs.classList.remove('is-hidden');
     }
+    errorMs.classList.add('is-hidden');
     createPopularFilmsMarkup(r);
-    const pagination = new Pagination('pagination', {
-      totalItems: filmApiService.totalFilms,
-      itemsPerPage: 20,
-      centerAlign: true,
-      visiblePages: 5,
-    });
-    pagination.on('beforeMove', function (e) {
+    let totalPages = filmApiService.allFilms / 20;
+    let page = filmApiService.page;
+
+    refs.paginationEl.innerHTML = createPagination(
+      totalPages,
+      page,
+      refs.paginationEl
+    );
+    refs.paginationEl.addEventListener('click', e => {
       refs.spinner.classList.remove('is-hidden');
-      filmApiService.page = e.page;
+      const _page = e.target.closest('li');
+
+      filmApiService.page = Number(_page.id);
       filmApiService.fetchArticles(url, true).then(r => {
         createPopularFilmsMarkup(r);
         refs.spinner.classList.add('is-hidden');
       });
+
+      refs.paginationEl.innerHTML = createPagination(
+        totalPages,
+        Number(_page.id),
+        refs.paginationEl
+      );
     });
-  });
-}
+    refs.spinner.classList.add('is-hidden');
+  })
+  .catch(console.log);
+};
 
 function typeSomething() {
   Notiflix.Notify.info(`Please type something`);
-}
+};
