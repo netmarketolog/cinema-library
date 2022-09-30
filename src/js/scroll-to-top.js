@@ -1,7 +1,7 @@
 const scrollUp = document.querySelector('.scroll-up');
 const scrollUpSirclePath = document.querySelector('.scroll-up__sircle-path');
 const pathLength = scrollUpSirclePath.getTotalLength();
-const offset = 100;
+const offset = 400;
 
 scrollUpSirclePath.style.strokeDasharray = `${pathLength} ${pathLength}`;
 scrollUpSirclePath.style.transition = 'stroke-dashoffset 20ms';
