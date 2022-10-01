@@ -40,9 +40,16 @@ function onSearch(e) {
         page,
         refs.paginationEl
       );
-      refs.paginationEl.addEventListener('click', e => {
+      refs.paginationEl.addEventListener('click', onPageBtnClick);
+
+      function onPageBtnClick(e) {
+        const _page = e.target.closest('li.numb');
+        if (!_page) return;
+        // if (e.target.nodeName === 'UL') return console.log(e.target.nodeName);
+        window.scrollTo({
+          top: 0,
+        });
         refs.spinner.classList.remove('is-hidden');
-        const _page = e.target.closest('li');
 
         filmApiService.page = Number(_page.id);
         filmApiService.fetchArticles(url, true).then(r => {
@@ -55,7 +62,7 @@ function onSearch(e) {
           Number(_page.id),
           refs.paginationEl
         );
-      });
+      }
       refs.spinner.classList.add('is-hidden');
     })
     .catch(console.log);
