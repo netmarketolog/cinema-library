@@ -16,10 +16,9 @@ export default function createPopularFilmsMarkup(films) {
 
           <h2 class="card__title">${film.title}</h2>
           <div class="card__wrap">
-            <p class="card__description">${genres} | ${film.release_date.slice(
-        0,
-        4
-      )}</p>
+            <p class="card__description">${genres} | ${
+        film.release_date ? film.release_date.slice(0, 4) : 'none'
+      }</p>
             <p class="card__rating">${film.vote_average.toFixed(1)}</p>
           </div>
         </a>
