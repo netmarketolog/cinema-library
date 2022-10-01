@@ -23,14 +23,14 @@ function onWatchedVideo() {
     refs.watchedBtn.setAttribute('disabled', true);
     refs.queueBtn.removeAttribute('disabled');
 
-    const savedFilm = localStorage.getItem("settings");
+    const savedFilm = localStorage.getItem("watched");
     const parsedFilm = JSON.parse(savedFilm);
     
     onRemoveQueue()
     // onBtnCustomWatched()
 
     parsedFilm.map(muvieId => {
-        fetcMuvie(muvieId);
+        filmsMarkup(muvieId);
     });  
 };
 
@@ -38,14 +38,14 @@ function onQueueVideo() {
     refs.queueBtn.setAttribute('disabled', true);
     refs.watchedBtn.removeAttribute('disabled');
     
-    const savedFilm = localStorage.getItem("queuesettings");
+    const savedFilm = localStorage.getItem("queue");
     const parsedFilm = JSON.parse(savedFilm);
 
     onRemoveWatched()
     // onBtnCustomQueue()
 
     parsedFilm.map(muvieId => {
-        fetcMuvie(muvieId);
+        filmsMarkup(muvieId);
     });
     
 }
