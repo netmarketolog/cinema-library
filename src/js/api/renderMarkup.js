@@ -1,5 +1,6 @@
 import allGenres from '../../genres.json';
 import getRefs from '../getRefs';
+import noImage from '../../images/en-image-stub-tablet.jpg';
 
 export default function createPopularFilmsMarkup(films) {
   const refs = getRefs();
@@ -12,7 +13,7 @@ export default function createPopularFilmsMarkup(films) {
             src=${
               film.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${film.poster_path}`
-                : './en-image-stub-tablet.8338aaf5.jpg'
+                : `${noImage}`
             }
             alt="${film.original_title}"
             class="card__poster"
