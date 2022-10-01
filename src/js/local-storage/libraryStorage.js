@@ -25,21 +25,41 @@ function onWatchedVideo() {
 
     const savedFilm = localStorage.getItem("settings");
     const parsedFilm = JSON.parse(savedFilm);
+    
+    onRemoveQueue()
+    // onBtnCustomWatched()
 
-    parsedFilm.map(muvieId => {   
-    fetcMuvie(muvieId);
+    parsedFilm.map(muvieId => {
+        fetcMuvie(muvieId);
     });  
 };
 
 function onQueueVideo() {
     refs.queueBtn.setAttribute('disabled', true);
     refs.watchedBtn.removeAttribute('disabled');
-
+    
     const savedFilm = localStorage.getItem("queuesettings");
     const parsedFilm = JSON.parse(savedFilm);
 
-    parsedFilm.map(muvieId => {   
+    onRemoveWatched()
+    // onBtnCustomQueue()
+
+    parsedFilm.map(muvieId => {
         fetcMuvie(muvieId);
     });
     
 }
+
+function onRemoveWatched() {
+    const remuve = document.querySelectorAll('.card__item')
+    remuve.forEach(li => {
+        li.remove()
+    });
+}
+
+function onRemoveQueue() {
+    const remuve = document.querySelectorAll('.card__item')
+    remuve.forEach(li => {
+        li.remove()
+    });
+}   
