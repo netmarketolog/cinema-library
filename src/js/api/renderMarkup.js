@@ -9,7 +9,11 @@ export default function createPopularFilmsMarkup(films) {
       return `<li class="card__item" id=${film.id}>
         <a class="card__link" id="429473" href="#">
           <img
-            src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
+            src=${
+              film.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${film.poster_path}`
+                : '/en-image-stub-tablet.8338aaf5.jpg'
+            }
             alt="${film.original_title}"
             class="card__poster"
           />
