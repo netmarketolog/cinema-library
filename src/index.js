@@ -13,11 +13,3 @@ import './js/modal-team';
 import './js/local-storage/addToLStorage';
 
 import './js/scroll-to-top';
-const settings = [616037, 301502, 532639]
-
-localStorage.setItem("settings", JSON.stringify(settings));
-
-
-const queuesettings = [718930, 642885, 985939]
-
-localStorage.setItem("queuesettings", JSON.stringify(queuesettings));
