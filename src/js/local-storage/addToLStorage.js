@@ -1,4 +1,5 @@
- 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const KEY_QUEUE = 'queue';
 const KEY_WATCHED = 'watched';
 
