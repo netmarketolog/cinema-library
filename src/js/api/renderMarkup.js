@@ -10,18 +10,16 @@ export default function createPopularFilmsMarkup(films) {
       return `<li class="card__item" id=${film.id}>
         <a class="card__link" id="429473" href="#">
           <img
-            src=${
+            src="${
               film.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${film.poster_path}`
                 : `${noImage}`
-            }
+            }"
             alt="${film.original_title}"
             class="card__poster"
           />
 
-          <h2 class="card__title">${
-            film.title ? film.title : film.original_title
-          }</h2>
+          <h2 class="card__title">${film.title || film.original_title}</h2>
           <div class="card__wrap">
             <p class="card__description">${genres} | ${
         film.release_date ? film.release_date.slice(0, 4) : 'none'
