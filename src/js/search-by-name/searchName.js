@@ -10,9 +10,34 @@ const filmApiService = new NewApiService();
 const searchForm = document.querySelector('#search-form');
 const errorMs = document.querySelector('.error-search');
 
+const url = '3/search/movie';
+let totalPages = null;
+
+refs.paginationEl.addEventListener('click', x);
+
+function x(e) {
+  const _page = e.target.closest('li.numb');
+  if (!_page) return;
+  window.scrollTo({
+    top: 0,
+  });
+  if (!filmApiService.query) return;
+  refs.spinner.classList.remove('is-hidden');
+
+  filmApiService.page = Number(_page.id);
+  filmApiService.fetchArticles(url, filmApiService.query).then(r => {
+    createPopularFilmsMarkup(r);
+    // refs.paginationEl.removeEventListener('click', x);
+    refs.spinner.classList.add('is-hidden');
+  });
+  totalPages = Math.ceil(filmApiService.allFilms / 20);
+  refs.paginationEl.innerHTML = createPagination(totalPages, Number(_page.id));
+}
+
 searchForm.addEventListener(`submit`, onSearch);
 function onSearch(e) {
   e.preventDefault();
+
   filmApiService.seach = true;
   filmApiService.query = e.currentTarget.elements.searchQuery.value.trim();
   filmApiService.resetPage();
@@ -20,9 +45,9 @@ function onSearch(e) {
     return typeSomething();
   }
   searchForm.reset();
-  const url = '3/search/movie';
+
   filmApiService
-    .fetchArticles(url, true)
+    .fetchArticles(url, filmApiService.query)
     .then(r => {
       if (filmApiService.allFilms === 0) {
         // return Notify.failure(
@@ -32,37 +57,11 @@ function onSearch(e) {
       }
       errorMs.classList.add('is-hidden');
       createPopularFilmsMarkup(r);
-      let totalPages = Math.ceil(filmApiService.allFilms / 20);
+      totalPages = Math.ceil(filmApiService.allFilms / 20);
       let page = filmApiService.page;
 
-      refs.paginationEl.innerHTML = createPagination(
-        totalPages,
-        page,
-        refs.paginationEl
-      );
-      refs.paginationEl.addEventListener('click', onPageBtnClick);
+      refs.paginationEl.innerHTML = createPagination(totalPages, page);
 
-      function onPageBtnClick(e) {
-        const _page = e.target.closest('li.numb');
-        if (!_page) return;
-        // if (e.target.nodeName === 'UL') return console.log(e.target.nodeName);
-        window.scrollTo({
-          top: 0,
-        });
-        refs.spinner.classList.remove('is-hidden');
-
-        filmApiService.page = Number(_page.id);
-        filmApiService.fetchArticles(url, true).then(r => {
-          createPopularFilmsMarkup(r);
-          refs.spinner.classList.add('is-hidden');
-        });
-
-        refs.paginationEl.innerHTML = createPagination(
-          totalPages,
-          Number(_page.id),
-          refs.paginationEl
-        );
-      }
       refs.spinner.classList.add('is-hidden');
     })
     .catch(console.log);

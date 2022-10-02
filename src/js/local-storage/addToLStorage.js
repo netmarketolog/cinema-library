@@ -1,17 +1,7 @@
-// Імпорт
-// import getRefs from '../getRefs';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-// Встановлення throttle
-// import throttle from 'lodash.throttle';
-
-// Слухачі подій
-// const refs = getRefs();
-// refs.addToQueueBtn.addEventListener('click', throttle(onQueueBtn, 500));
-// refs.addToWatchedBtn.addEventListener('click', throttle(onWatchedBtn, 500));
-
-// Константи
-// const KEY_QUEUE = 'queue';
-// const KEY_WATCHED = 'watched';
+const KEY_QUEUE = 'queue';
+const KEY_WATCHED = 'watched';
 
 let queueList = [];
 let watchedList = [];
@@ -19,8 +9,7 @@ let watchedList = [];
 // Функція для роботи зі сховищем
 // Функція додавання фільмів до черги
 function onQueueBtn(film) {
-  const KEY_QUEUE = 'queue';
-  if (queueList.includes(film)) {
+  if (queueList.find(queueList => queueList.id === film.id)) {
     return;
   } else {
     queueList.push(film);
@@ -28,29 +17,17 @@ function onQueueBtn(film) {
   localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
 }
 // Функція додавання переглянутих фільмів
-function onWatchedBtn(film) {
-  const KEY_WATCHED = 'watched';
-  // const KEY_QUEUE = 'queue';
-  if (watchedList.includes(film)) {
-    return;
-  }
-  else {
-    // const saveQueueFilms = localStorage.getItem(KEY_QUEUE);
-    // const parseQueueFilms = JSON.parse(saveQueueFilms);
-    // // const queueFilmsID = parseQueueFilms.map(film.id)
-
-    // if (film === parseQueueFilms.includes(film)) {
-    // const indexFilm = parseQueueFilms.indexOf(film);
-    // const overwriting = parseQueueFilms.splice(indexFilm, 1);
-    // localStorage.setItem(KEY_QUEUE, JSON.stringify(overwriting));
-    
-    // }
-    watchedList.push(film);
-  }
-
+function onWatchedBtn(id) {
+  queueList = JSON.parse(localStorage.getItem(KEY_QUEUE));
+  queueList.map(film => {
+    if (id === film.id) {
+      watchedList.push(film);
+      const indexId = queueList.indexOf(film);
+      queueList.splice(indexId, 1);
+    }
+  });
+  localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
-  // console.log(parseQueueFilms);
-
 }
 
 export { onQueueBtn, onWatchedBtn };

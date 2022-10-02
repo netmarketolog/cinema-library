@@ -5,22 +5,23 @@ import throttle from 'lodash.throttle';
 
 // Modal
 const refs = getRefs();
-
+let isCardMovie = null;
 refs.popularFilmsList.addEventListener('click', e => {
   e.preventDefault();
-  const isCardMovie = e.target.closest('.card__item');
+  isCardMovie = e.target.closest('.card__item');
   // console.log(isCardMovie.id);
   if (!isCardMovie) {
     return;
   }
 
-  openModal(isCardMovie.id);
+  openModal(Number(isCardMovie.id));
 
   refs.popularFilmsList.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
     }
   });
+  return isCardMovie;
 });
 
 async function fetchDescr(filmId) {
@@ -31,20 +32,18 @@ async function fetchDescr(filmId) {
   return descriptionFilm;
 }
 
+function altw() {
+  onWatchedBtn(Number(isCardMovie.id));
+}
+let altq = null;
 function openModal(movie) {
   fetchDescr(movie).then(film => {
-    refs.addToWatchedBtn.addEventListener(
-      'click',
-      throttle(() => {
-        onWatchedBtn(film);
-      }, 500)
-    );
-    refs.addToQueueBtn.addEventListener(
-      'click',
-      throttle(() => {
-        onQueueBtn(film);
-      }, 500)
-    );
+    altq = () => {
+      onQueueBtn(film);
+    };
+    refs.addToWatchedBtn.addEventListener('click', altw);
+    refs.addToQueueBtn.addEventListener('click', altq);
+
 
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
@@ -89,24 +88,6 @@ function openModal(movie) {
           <h3 class="film__about-title">About</h3>
           <p class="film__text">${film.overview}</p>
         </div>`;
-    // Константи
-    // Шлях до кнопок
-    const addToQueueBtn = document.querySelector('[data-addToQueue]');
-    const addToWatchedBtn = document.querySelector('[data-addToWatched]');
-
-    // Слухачі подій
-    addToQueueBtn.addEventListener(
-      'click',
-      throttle(() => {
-        onQueueBtn(film);
-      }, 500)
-    );
-    addToWatchedBtn.addEventListener(
-      'click',
-      throttle(() => {
-        onWatchedBtn(film);
-      }, 500)
-    );
   });
 
   refs.modalEl.classList.remove('is-hidden');
@@ -119,6 +100,8 @@ function openModal(movie) {
 export default function closeModal() {
   refs.modalEl.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
+  refs.addToWatchedBtn.removeEventListener('click', altw);
+  refs.addToQueueBtn.removeEventListener('click', altq);
 }
 
 //close

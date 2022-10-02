@@ -1,5 +1,6 @@
 import allGenres from '../../genres.json';
 import getRefs from '../getRefs';
+import noImage from '../../images/en-image-stub-tablet.jpg';
 
 export default function createPopularFilmsMarkup(films) {
   const refs = getRefs();
@@ -8,13 +9,12 @@ export default function createPopularFilmsMarkup(films) {
       const genres = getGenresOfFilm(film);
       return `<li class="card__item" id=${film.id}>
         <a class="card__link" id="429473" href="#">
-          <img
-            src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
-            alt="${film.original_title}"
-            class="card__poster"
-          />
-
-          <h2 class="card__title">${film.title}</h2>
+        ${
+          film.poster_path
+            ? `<img src="https://image.tmdb.org/t/p/w500/${film.poster_path}" alt="${film.original_title}" class="card__poster" />`
+            : `<img src="${noImage}" alt="${film.original_title}" class="card__poster" />`
+        }
+          <h2 class="card__title">${film.title || film.original_title}</h2>
           <div class="card__wrap">
             <p class="card__description">${genres} | ${
         film.release_date ? film.release_date.slice(0, 4) : 'none'
@@ -29,14 +29,16 @@ export default function createPopularFilmsMarkup(films) {
 }
 
 function getGenresOfFilm(film) {
-  return film.genre_ids
-    .map(id => {
-      for (let genre of allGenres) {
-        if (id === genre.id) {
-          return genre.name;
-        }
-      }
-    })
-    .slice(0, 3)
-    .join(', ');
+  return film.genre_ids.length
+    ? film.genre_ids
+        .map(id => {
+          for (let genre of allGenres) {
+            if (id === genre.id) {
+              return genre.name;
+            }
+          }
+        })
+        .slice(0, 3)
+        .join(', ')
+    : 'none';
 }

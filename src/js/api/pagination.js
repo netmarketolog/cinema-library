@@ -1,4 +1,4 @@
-export default function createPagination(totalPages, page, element) {
+export default function createPagination(totalPages, page) {
   let liTag = '';
   let active;
   let beforePage = page - 2;
@@ -61,6 +61,6 @@ export default function createPagination(totalPages, page, element) {
       page + 1
     }><span>Next <i class="fas fa-angle-right"></i></span></li>`;
   }
-  element.innerHTML = liTag;
+  // element.innerHTML = liTag;
   return liTag;
 }
