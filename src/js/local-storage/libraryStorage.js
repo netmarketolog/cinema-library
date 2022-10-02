@@ -7,23 +7,30 @@ const refs = getRefs();
 
 refs.watchedBtn.addEventListener('click', onWatchedVideo);
 refs.queueBtn.addEventListener('click', onQueueVideo);
-refs.addToWatchedBtn.addEventListener('click', onDeleteWatched);
-refs.addToQueueBtn.addEventListener('click', onDeleteQueue);
+
+let watched = [];
+let queue = [];
+const savedQueueFilm = localStorage.getItem('queue');
+const parsedQueueFilm = JSON.parse(savedQueueFilm);
+parsedQueueFilm.map(muvieId => {
+  queue.push(muvieId);
+});
+
+const savedWotchedFilm = localStorage.getItem('watched');
+const parsedWotchedFilm = JSON.parse(savedWotchedFilm);
+parsedWotchedFilm.map(muvieId => {
+  watched.push(muvieId);
+});
 
 function onWatchedVideo() {
   refs.watchedBtn.setAttribute('disabled', true);
   refs.queueBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Remove from Watched';
   refs.addToQueueBtn.textContent = 'Add to Queue';
-
-  const savedFilm = localStorage.getItem('watched');
-  const parsedFilm = JSON.parse(savedFilm);
-
+  refs.addToWatchedBtn.addEventListener('click', onDeleteWatched);
+  refs.addToQueueBtn.removeEventListener('click', onDeleteQueue);
   onRemoveQueue();
-
-  parsedFilm.map(muvieId => {
-    filmsMarkup(muvieId);
-  });
+  watchedMarkup();
 }
 
 function onQueueVideo() {
@@ -31,12 +38,23 @@ function onQueueVideo() {
   refs.watchedBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Add to Watched';
   refs.addToQueueBtn.textContent = 'Remove from Queue';
+  refs.addToQueueBtn.addEventListener('click', onDeleteQueue);
+  onRemoveWatched();
+  queueMarkup();
+}
 
-  const savedFilm = localStorage.getItem('queue');
+function watchedMarkup() {
+  const savedFilm = localStorage.getItem('watched');
   const parsedFilm = JSON.parse(savedFilm);
 
-  onRemoveWatched();
+  parsedFilm.map(muvieId => {
+    filmsMarkup(muvieId);
+  });
+}
 
+function queueMarkup() {
+  const savedFilm = localStorage.getItem('queue');
+  const parsedFilm = JSON.parse(savedFilm);
   parsedFilm.map(muvieId => {
     filmsMarkup(muvieId);
   });
@@ -56,36 +74,59 @@ function onRemoveQueue() {
   });
 }
 
-function onDeleteWatched() {
-  const x = document.querySelector('.film__poster');
-  const y = document.querySelectorAll('.card__item');
-  y.forEach(li => {
-    if (x.id === li.id) {
-      li.remove();
-      closeModal();
-      const savedSettings = localStorage.getItem('queue');
-      const parsedSettings = JSON.parse(savedSettings);
-      // parsedSettings.map(muvieId => {
-      //   localStorage.removeItem('watched', muvieId.id);
-      //   console.log(muvieId.id);
-      // });
-    }
-  });
-}
-
 function onDeleteQueue() {
   const x = document.querySelector('.film__poster');
   const y = document.querySelectorAll('.card__item');
   y.forEach(li => {
     if (x.id === li.id) {
-      li.remove();
-      closeModal();
-      const savedSettings = localStorage.getItem('watched');
-      const parsedSettings = JSON.parse(savedSettings);
-      // parsedSettings.map(muvieId => {
-      //   localStorage.removeItem('watched', muvieId.id);
-      //   console.log(muvieId.id);
-      // });
+      console.log(x.id);
+      console.log(li.id);
+      queue.map(film => {
+        console.log(film.id);
+        if (film.id === Number(li.id)) {
+          console.log(film.id);
+          console.log(li.id);
+          const x = queue.indexOf(film);
+          queue.splice(x, 1);
+          li.remove();
+          closeModal();
+
+          const savedSettings = localStorage.getItem('queue');
+          const parsedSettings = JSON.parse(savedSettings);
+          localStorage.removeItem('queue', parsedSettings);
+
+          localStorage.setItem('queue', JSON.stringify(queue));
+        }
+      });
     }
   });
 }
+
+function onDeleteWatched() {
+  const x = document.querySelector('.film__poster');
+  const y = document.querySelectorAll('.card__item');
+  y.forEach(li => {
+    if (x.id === li.id) {
+      console.log(x.id);
+      console.log(li.id);
+      watched.map(film => {
+        console.log(film.id);
+        if (film.id === Number(li.id)) {
+          console.log(film.id);
+          console.log(li.id);
+          const x = watched.indexOf(film);
+          watched.splice(x, 1);
+          li.remove();
+          closeModal();
+
+          const savedSettings = localStorage.getItem('watched');
+          const parsedSettings = JSON.parse(savedSettings);
+          localStorage.removeItem('watched', parsedSettings);
+
+          localStorage.setItem('watched', JSON.stringify(watched));
+        }
+      });
+    }
+  });
+}
+console.log(queue);
