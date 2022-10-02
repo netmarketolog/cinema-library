@@ -1,6 +1,6 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
-import {onQueueBtn, onWatchedBtn} from './local-storage/addToLStorage';
+import { onQueueBtn, onWatchedBtn } from './local-storage/addToLStorage';
 import throttle from 'lodash.throttle';
 
 // Modal
@@ -31,11 +31,21 @@ async function fetchDescr(filmId) {
   return descriptionFilm;
 }
 
-function openModal(movie) {
+export default function openModal(movie) {
   fetchDescr(movie).then(film => {
-    refs.addToWatchedBtn.addEventListener('click', throttle(() => { onWatchedBtn(film) }, 500));
-    refs.addToQueueBtn.addEventListener('click', throttle(() => {onQueueBtn(film)}, 500));
-    
+    refs.addToWatchedBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onWatchedBtn(film);
+      }, 500)
+    );
+    refs.addToQueueBtn.addEventListener(
+      'click',
+      throttle(() => {
+        onQueueBtn(film);
+      }, 500)
+    );
+
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
           src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
@@ -99,8 +109,6 @@ function openModal(movie) {
     );
   });
 
-  
-
   refs.modalEl.classList.remove('is-hidden');
   document.body.classList.add('no-scroll');
 
@@ -108,7 +116,7 @@ function openModal(movie) {
   btnClose.addEventListener('click', () => closeModal());
 }
 
-function closeModal() {
+export default function closeModal() {
   refs.modalEl.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
 }
