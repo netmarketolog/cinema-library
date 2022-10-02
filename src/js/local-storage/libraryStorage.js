@@ -72,6 +72,7 @@ function addToQueue() {
           const parsedWatced = JSON.parse(savedWatced);
           localStorage.removeItem('watched', parsedWatced);
           localStorage.setItem('watched', JSON.stringify(watched));
+
           const savedQueue = localStorage.getItem('queue');
           const parsedQueue = JSON.parse(savedQueue);
           localStorage.removeItem('queue', parsedQueue);
@@ -107,6 +108,7 @@ function addToWatched() {
           const parsedWatced = JSON.parse(savedWatced);
           localStorage.removeItem('watched', parsedWatced);
           localStorage.setItem('watched', JSON.stringify(watched));
+
           const savedQueue = localStorage.getItem('queue');
           const parsedQueue = JSON.parse(savedQueue);
           localStorage.removeItem('queue', parsedQueue);
@@ -202,7 +204,3 @@ function onDeleteWatched() {
     }
   });
 }
-console.log('queue', queue);
-console.log('watched', watched);
-console.log('addWatched', addWatched);
-console.log('addQueue', addQueue);
