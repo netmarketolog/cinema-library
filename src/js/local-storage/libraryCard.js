@@ -3,7 +3,6 @@ const refs = getRefs();
 
 export default function filmsMarkup(film) {
   const genres = getGenresOfFilm(film);
-  console.log(refs.popularFilmsList);
   refs.popularFilmsList.insertAdjacentHTML(
     'afterbegin',
     ` <li class="card__item" id=${film.id}>

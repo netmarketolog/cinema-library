@@ -44,6 +44,7 @@ function openModal(movie) {
     refs.addToWatchedBtn.addEventListener('click', altw);
     refs.addToQueueBtn.addEventListener('click', altq);
 
+
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
           src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
@@ -96,7 +97,7 @@ function openModal(movie) {
   btnClose.addEventListener('click', () => closeModal());
 }
 
-function closeModal() {
+export default function closeModal() {
   refs.modalEl.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
   refs.addToWatchedBtn.removeEventListener('click', altw);
