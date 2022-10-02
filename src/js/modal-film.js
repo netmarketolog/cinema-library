@@ -32,18 +32,22 @@ async function fetchDescr(filmId) {
   return descriptionFilm;
 }
 
-function altw() {
-  onWatchedBtn(Number(isCardMovie.id));
-}
+// function altw() {
+//   onWatchedBtn(Number(isCardMovie.id));
+// }
+let altw = null;
 let altq = null;
 function openModal(movie) {
   fetchDescr(movie).then(film => {
     altq = () => {
       onQueueBtn(film);
     };
+    altw = () => {
+      onWatchedBtn(film);
+    };
+
     refs.addToWatchedBtn.addEventListener('click', altw);
     refs.addToQueueBtn.addEventListener('click', altq);
-
 
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
