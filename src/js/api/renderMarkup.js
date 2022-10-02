@@ -9,16 +9,11 @@ export default function createPopularFilmsMarkup(films) {
       const genres = getGenresOfFilm(film);
       return `<li class="card__item" id=${film.id}>
         <a class="card__link" id="429473" href="#">
-          <img
-            src="${
-              film.poster_path
-                ? `https://image.tmdb.org/t/p/w500/${film.poster_path}`
-                : `${noImage}`
-            }"
-            alt="${film.original_title}"
-            class="card__poster"
-          />
-
+        ${
+          film.poster_path
+            ? `<img src="https://image.tmdb.org/t/p/w500/${film.poster_path}" alt="${film.original_title}" class="card__poster" />`
+            : `<img src="${noImage}" alt="${film.original_title}" class="card__poster" />`
+        }
           <h2 class="card__title">${film.title || film.original_title}</h2>
           <div class="card__wrap">
             <p class="card__description">${genres} | ${
