@@ -42,8 +42,7 @@ export default function fetchPopularFilms() {
 
         refs.paginationEl.innerHTML = createPagination(
           totalPages,
-          Number(_page.id),
-          refs.paginationEl
+          Number(_page.id)
         );
       }
       refs.spinner.classList.add('is-hidden');
