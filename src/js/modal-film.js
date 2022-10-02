@@ -31,7 +31,7 @@ async function fetchDescr(filmId) {
   return descriptionFilm;
 }
 
-export default function openModal(movie) {
+function openModal(movie) {
   fetchDescr(movie).then(film => {
     refs.addToWatchedBtn.addEventListener(
       'click',
