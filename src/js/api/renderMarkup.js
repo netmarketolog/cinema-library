@@ -34,14 +34,16 @@ export default function createPopularFilmsMarkup(films) {
 }
 
 function getGenresOfFilm(film) {
-  return film.genre_ids
-    .map(id => {
-      for (let genre of allGenres) {
-        if (id === genre.id) {
-          return genre.name;
-        }
-      }
-    })
-    .slice(0, 3)
-    .join(', ');
+  return film.genre_ids.length
+    ? film.genre_ids
+        .map(id => {
+          for (let genre of allGenres) {
+            if (id === genre.id) {
+              return genre.name;
+            }
+          }
+        })
+        .slice(0, 3)
+        .join(', ')
+    : 'none';
 }
