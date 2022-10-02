@@ -18,7 +18,7 @@ function onQueueBtn(film) {
 }
 // Функція додавання переглянутих фільмів
 function onWatchedBtn(id) {
-  local = JSON.parse(localStorage.getItem(KEY_QUEUE));
+  queueList = JSON.parse(localStorage.getItem(KEY_QUEUE));
   queueList.map(film => {
     if (id === film.id) {
       watchedList.push(film);
