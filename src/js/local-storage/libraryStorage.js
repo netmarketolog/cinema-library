@@ -5,6 +5,7 @@ import '../modal-film';
 import '../local-storage/addToLStorage';
 const refs = getRefs();
 
+onQueueVideo();
 refs.watchedBtn.addEventListener('click', onWatchedVideo);
 refs.queueBtn.addEventListener('click', onQueueVideo);
 
