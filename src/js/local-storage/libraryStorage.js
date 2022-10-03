@@ -159,13 +159,8 @@ function onDeleteQueue() {
   const y = document.querySelectorAll('.card__item');
   y.forEach(li => {
     if (x.id === li.id) {
-      console.log(x.id);
-      console.log(li.id);
       queue.map(film => {
-        console.log(film.id);
         if (film.id === Number(li.id)) {
-          console.log(film.id);
-          console.log(li.id);
           const x = queue.indexOf(film);
           queue.splice(x, 1);
           li.remove();
@@ -187,13 +182,8 @@ function onDeleteWatched() {
   const y = document.querySelectorAll('.card__item');
   y.forEach(li => {
     if (x.id === li.id) {
-      console.log(x.id);
-      console.log(li.id);
       watched.map(film => {
-        console.log(film.id);
         if (film.id === Number(li.id)) {
-          console.log(film.id);
-          console.log(li.id);
           const x = watched.indexOf(film);
           watched.splice(x, 1);
           li.remove();
@@ -209,3 +199,4 @@ function onDeleteWatched() {
     }
   });
 }
+console.log(watched);

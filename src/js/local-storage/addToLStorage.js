@@ -14,6 +14,8 @@ const KEY_WATCHED = 'watched';
 
 let queueList = [];
 let watchedList = [];
+// let addQueueList = [];
+let addWatchedList = [];
 
 // Функція додавання фільмів до черги
 function onQueueBtn(film) {
@@ -76,8 +78,85 @@ function onWatchedBtn(film) {
 
   // changeTextWatched();
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+
+  textBtn();
+  // qwqw();
+}
+// function qwqw() {
+//   const savedWotchedFilm = localStorage.getItem('watched');
+//   const parsedWotchedFilm = JSON.parse(savedWotchedFilm);
+//   if (!parsedWotchedFilm) {
+//     return;
+//   }
+//   parsedWotchedFilm.map(muvieId => {
+//     addWatchedList.push(muvieId);
+//   });
+// }
+
+function textBtn() {
+  addWatchedList = localStorage.getItem('watched');
+  const parsedWotchedFilm = JSON.parse(addWatchedList);
+  parsedWotchedFilm.map(film => {
+    const y = document.querySelector('.film__btn');
+    console.log(y);
+    if (film.id === Number(y.id)) {
+      console.log('Number(btn.id)', Number(y.id));
+      refs.addToWatchedBtn.textContent = 'remove from watched';
+    } else if (film.id !== Number(y.id)) {
+      refs.addToWatchedBtn.textContent = 'add to watched';
+    }
+    // y.forEach(btn => {
+    //   console.log(btn.id);
+    //   if (film.id === Number(btn.id)) {
+    //     console.log('film.id', film.id);
+    //     console.log('Number(btn.id)', Number(btn.id));
+    //     refs.addToWatchedBtn.textContent = 'remove from watched';
+    //   } else if (film.id !== Number(btn.id)) {
+    //     refs.addToWatchedBtn.textContent = 'add to watched';
+    //   }
+    // });
+  });
+}
+export default function forText() {
+  addWatchedList = localStorage.getItem('watched');
+  const parsedWotchedFilm = JSON.parse(addWatchedList);
+  parsedWotchedFilm.map(film => {
+    const y = document.querySelector('.film__btn');
+    console.log(y);
+    if (film.id === Number(y.id)) {
+      console.log('Number(btn.id)', Number(y.id));
+      refs.addToWatchedBtn.textContent = 'remove from watched';
+    } else if (film.id !== Number(y.id)) {
+      refs.addToWatchedBtn.textContent = 'add to watched';
+    }
+    // console.log('123watchedList');
+    // addWatchedList.map(film => {
+    //   const y = document.querySelector('.film__btn');
+    //   console.log('film.id else', film.id);
+    //   refs.addToWatchedBtn.textContent = 'add to watched';
+    //   console.log(y.id);
+    //   if (film.id === Number(y.id)) {
+    //     console.log('film.id', film.id);
+    //     refs.addToWatchedBtn.textContent = 'remove from watched';
+    //     return;
+    //   }
+  });
 }
 
 //изменение текста кнопок
-
-export { onQueueBtn, onWatchedBtn };
+// 1 менять текст на кнопке
+export { forText, onQueueBtn, onWatchedBtn };
+// function textBtn() {
+//   console.log(watchedList);
+//   watchedList.map(film => {
+//     const y = document.querySelectorAll('.film_btn--add');
+//     y.forEach(li => {
+//       if (film.id === Number(li.id)) {
+//         refs.addToWatchedBtn.textContent = 'text';
+//       } else if (film.id !== Number(li.id)) {
+//         refs.addToWatchedBtn.textContent = 'qwrqewtyrtwr  qtewweqw';
+//       }
+//     });
+//   });
+// }
+console.log(addWatchedList);
