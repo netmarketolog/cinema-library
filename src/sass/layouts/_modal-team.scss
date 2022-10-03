@@ -32,7 +32,6 @@
 
   @media screen and (min-width: $tablet) {
     width: 704px;
-    height: auto;
     min-height: 552px;
 
     padding: 40px 72px 40px 36px;
@@ -40,6 +39,7 @@
 
   @media screen and (min-width: $desktop) {
     width: 1300px;
+    height: auto;
     min-height: 500px;
 
     padding: 40px 12px;
