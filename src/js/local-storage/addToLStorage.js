@@ -1,4 +1,9 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+Notify.init({
+  width: '300px',
+  position: 'right-bottom',
+  closeButton: false,
+});
 
 const KEY_QUEUE = 'queue';
 const KEY_WATCHED = 'watched';
