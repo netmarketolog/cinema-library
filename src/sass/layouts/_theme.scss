@@ -29,10 +29,13 @@ body.dark-theme {
   .film__votes {
     color: #000;
   }
-  .modal-film__close-btn {
+  .modal-film__close-btn,
+  .modal-team__close-btn {
     fill: #fff;
   }
-  .modal-film__close-btn:hover {
+
+  .modal-film__close-btn:hover,
+  .modal-team__close-btn:hover {
     fill: #ff6b01;
   }
 }
