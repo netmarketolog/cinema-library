@@ -5,6 +5,10 @@ Notify.init({
   closeButton: false,
 });
 
+const refs = {
+  addToQueueBtn: document.querySelector("[data-addToQueue]"),
+  addToWatchedBtn: document.querySelector("[data-addToWatched]")
+}
 const KEY_QUEUE = 'queue';
 const KEY_WATCHED = 'watched';
 
@@ -35,6 +39,7 @@ function onQueueBtn(film) {
     });
     }
   }
+  changeTextQueue()
   localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
 }
 // Функція додавання переглянутих фільмів
@@ -59,7 +64,23 @@ function onWatchedBtn(film) {
       });
     }
   }
+  changeTextWatched()
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+}
+
+//изменение текста кнопок
+
+function changeTextWatched () {
+  if (onWatchedBtn) {
+    refs.addToWatchedBtn.textContent = 'Adding to Watched successful'
+
+  }
+}
+
+function changeTextQueue () {
+  if (onQueueBtn) {
+    refs.addToQueueBtn.textContent = 'Adding to queue successful'
+  }
 }
 
 export { onQueueBtn, onWatchedBtn };
