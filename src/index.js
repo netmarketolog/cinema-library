@@ -9,7 +9,7 @@ import './js/theme-switch';
 import './js/search-by-name/searchName';
 
 import './js/modal-film';
+import './js/modal-trailer';
 import './js/modal-team';
 import './js/local-storage/addToLStorage';
 import './js/scroll-to-top';
-
