@@ -14,10 +14,7 @@ const KEY_WATCHED = 'watched';
 
 let queueList = [];
 let watchedList = [];
-// localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
-// localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
 
-// Функція для роботи зі сховищем
 // Функція додавання фільмів до черги
 function onQueueBtn(film) {
   if (localStorage.getItem(KEY_QUEUE)) {
@@ -59,10 +56,6 @@ function onWatchedBtn(film) {
     watchedList = JSON.parse(localStorage.getItem(KEY_WATCHED));
   }
 
-  // if (watchedList === []) {
-  //   watchedList.push(film);
-  //   Notify.success('Your movie has been watched');
-  // }
   if (watchedList.length > 0) {
     if (watchedList.find(watchedList => watchedList.id === film.id)) {
       Notify.info('This movie has already been viewed');
@@ -86,17 +79,5 @@ function onWatchedBtn(film) {
 }
 
 //изменение текста кнопок
-
-// function changeTextWatched() {
-//   if (onWatchedBtn) {
-//     refs.addToWatchedBtn.textContent = 'Adding to Watched successful';
-//   }
-// }
-
-// function changeTextQueue() {
-//   if (onQueueBtn) {
-//     refs.addToQueueBtn.textContent = 'Adding to queue successful';
-//   }
-// }
 
 export { onQueueBtn, onWatchedBtn };

@@ -34,6 +34,8 @@ function onWatchedVideo() {
   refs.addToQueueBtn.textContent = 'Add to Queue';
   refs.addToWatchedBtn.addEventListener('click', onDeleteWatched);
   refs.addToQueueBtn.addEventListener('click', addToQueue);
+  refs.queueBtn.classList.remove('is-active');
+  refs.watchedBtn.classList.add('is-active');
   onRemoveQueue();
   watchedMarkup();
 }
@@ -45,6 +47,8 @@ function onQueueVideo() {
   refs.addToQueueBtn.textContent = 'Remove from Queue';
   refs.addToQueueBtn.addEventListener('click', onDeleteQueue);
   refs.addToWatchedBtn.addEventListener('click', addToWatched);
+  refs.queueBtn.classList.add('is-active');
+  refs.watchedBtn.classList.remove('is-active');
   onRemoveWatched();
   queueMarkup();
 }
