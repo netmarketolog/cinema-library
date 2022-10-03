@@ -97,24 +97,12 @@ function textBtn() {
   addWatchedList = localStorage.getItem('watched');
   const parsedWotchedFilm = JSON.parse(addWatchedList);
   parsedWotchedFilm.map(film => {
+    console.log(film);
     const y = document.querySelector('.film__btn');
-    console.log(y);
+    refs.addToWatchedBtn.textContent = 'add to watched';
     if (film.id === Number(y.id)) {
-      console.log('Number(btn.id)', Number(y.id));
       refs.addToWatchedBtn.textContent = 'remove from watched';
-    } else if (film.id !== Number(y.id)) {
-      refs.addToWatchedBtn.textContent = 'add to watched';
     }
-    // y.forEach(btn => {
-    //   console.log(btn.id);
-    //   if (film.id === Number(btn.id)) {
-    //     console.log('film.id', film.id);
-    //     console.log('Number(btn.id)', Number(btn.id));
-    //     refs.addToWatchedBtn.textContent = 'remove from watched';
-    //   } else if (film.id !== Number(btn.id)) {
-    //     refs.addToWatchedBtn.textContent = 'add to watched';
-    //   }
-    // });
   });
 }
 export default function forText() {
@@ -122,24 +110,11 @@ export default function forText() {
   const parsedWotchedFilm = JSON.parse(addWatchedList);
   parsedWotchedFilm.map(film => {
     const y = document.querySelector('.film__btn');
-    console.log(y);
+    refs.addToWatchedBtn.textContent = 'add to watched';
     if (film.id === Number(y.id)) {
-      console.log('Number(btn.id)', Number(y.id));
       refs.addToWatchedBtn.textContent = 'remove from watched';
-    } else if (film.id !== Number(y.id)) {
-      refs.addToWatchedBtn.textContent = 'add to watched';
+      console.log(refs.addToWatchedBtn.textContent);
     }
-    // console.log('123watchedList');
-    // addWatchedList.map(film => {
-    //   const y = document.querySelector('.film__btn');
-    //   console.log('film.id else', film.id);
-    //   refs.addToWatchedBtn.textContent = 'add to watched';
-    //   console.log(y.id);
-    //   if (film.id === Number(y.id)) {
-    //     console.log('film.id', film.id);
-    //     refs.addToWatchedBtn.textContent = 'remove from watched';
-    //     return;
-    //   }
   });
 }
 
@@ -159,4 +134,3 @@ export { forText, onQueueBtn, onWatchedBtn };
 //     });
 //   });
 // }
-console.log(addWatchedList);
