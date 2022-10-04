@@ -1,6 +1,6 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
-import { forText,
+import { checkLSAndBtnTextOutputWatched, checkLSAndBtnTextOutputQueue,
   onQueueBtn,
   onWatchedBtn,
 } from './local-storage/addToLStorage';
@@ -18,7 +18,7 @@ refs.popularFilmsList.addEventListener('click', e => {
   }
 
   openModal(Number(isCardMovie.id));
-  forText();
+ 
   refs.popularFilmsList.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
@@ -94,7 +94,8 @@ function openModal(movie) {
           <h3 class="film__about-title">About</h3>
           <p class="film__text">${film.overview}</p>
         </div>`;
-
+        checkLSAndBtnTextOutputWatched();
+        checkLSAndBtnTextOutputQueue();
     
   });
 
