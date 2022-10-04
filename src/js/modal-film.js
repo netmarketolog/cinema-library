@@ -1,9 +1,14 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
+
+import playButton from '../images/modal-film-poster-play-button.png';
+import { watchTrailer } from './modal-trailer'; // для трейлера
+
 import { checkLSAndBtnTextOutputWatched, checkLSAndBtnTextOutputQueue,
   onQueueBtn,
   onWatchedBtn,
 } from './local-storage/addToLStorage';
+
 import throttle from 'lodash.throttle';
 
 // Modal
@@ -51,6 +56,7 @@ function openModal(movie) {
 
     refs.addToWatchedBtn.addEventListener('click', altw);
     refs.addToQueueBtn.addEventListener('click', altq);
+
     refs.modalRendEl.innerHTML = `<div class="film__poster" id=${film.id}>
         <img
           src="https://image.tmdb.org/t/p/w500/${film.poster_path}"
@@ -58,6 +64,13 @@ function openModal(movie) {
           loading="lazy"
           class="film__img"
         />
+        <div class="film__overlay">
+          <img
+            src="${playButton}./images/modal-film-poster-play-button.png"
+            alt="icon play"
+            class="film__play-img"
+          />
+        </div>
       </div>
       <div class="film__info">
         <h2 class="film__title">${film.original_title}</h2>
@@ -94,6 +107,10 @@ function openModal(movie) {
           <h3 class="film__about-title">About</h3>
           <p class="film__text">${film.overview}</p>
         </div>`;
+
+    document
+      .querySelector('.film__play-img')
+      .addEventListener('click', watchTrailer); // для трейлера
         checkLSAndBtnTextOutputWatched();
         checkLSAndBtnTextOutputQueue();
     
