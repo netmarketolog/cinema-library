@@ -37,19 +37,19 @@ function onQueueBtn(film) {
       });
       localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
       editTextBtnAddQueue();
-      // Notify.info('You already have this movie in your queue');
+      Notify.info('You already have this movie in your queue');
       return;
     }
   }
   queueList.push(film);
 
-  // Notify.success('Your movie has been added to the queue');
+  Notify.success('Your movie has been added to the queue');
   if (watchedList.length > 0) {
     watchedList.map(films => {
       if (film.id === films.id) {
         const indexId = watchedList.indexOf(films);
         watchedList.splice(indexId, 1);
-        // Notify.warning('Rewatching the movie');
+        Notify.warning('Rewatching the movie');
         localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
         editTextBtnAddWatched();
       }
@@ -79,12 +79,12 @@ function onWatchedBtn(film) {
       localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
 
       editTextBtnAddWatched();
-      // Notify.info('This movie has already been viewed');
+      Notify.info('This movie has already been viewed');
       return;
     }
   }
   watchedList.push(film);
-  // Notify.success('Your movie has been watched');
+  Notify.success('Your movie has been watched');
   if (queueList.length > 0) {
     queueList.map(films => {
       if (film.id === films.id) {
