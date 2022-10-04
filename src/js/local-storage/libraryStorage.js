@@ -14,19 +14,29 @@ let watched = [];
 let queue = [];
 let addWatched = [];
 let addQueue = [];
-const savedQueueFilm = localStorage.getItem('queue');
-const parsedQueueFilm = JSON.parse(savedQueueFilm);
-parsedQueueFilm.map(muvieId => {
-  queue.push(muvieId);
-  addWatched.push(muvieId);
-});
+let parsedQueueFilm;
+let parsedWotchedFilm;
+if (localStorage.getItem('queue')) {
+  const savedQueueFilm = localStorage.getItem('queue');
+  parsedQueueFilm = JSON.parse(savedQueueFilm);
+  parsedQueueFilm.map(muvieId => {
+    queue.push(muvieId);
+    addWatched.push(muvieId);
+  });
+} else {
+  parsedQueueFilm = [];
+}
 
-const savedWotchedFilm = localStorage.getItem('watched');
-const parsedWotchedFilm = JSON.parse(savedWotchedFilm);
-parsedWotchedFilm.map(muvieId => {
-  watched.push(muvieId);
-  addQueue.push(muvieId);
-});
+if (localStorage.getItem('watched')) {
+  const savedWotchedFilm = localStorage.getItem('watched');
+  parsedWotchedFilm = JSON.parse(savedWotchedFilm);
+  parsedWotchedFilm.map(muvieId => {
+    watched.push(muvieId);
+    addQueue.push(muvieId);
+  });
+} else {
+  parsedWotchedFilm = [];
+}
 
 function onWatchedVideo() {
   refs.pagination.classList.add('is-hidden');
@@ -133,9 +143,13 @@ function addToWatched() {
   });
 }
 function watchedMarkup() {
-  const savedFilm = localStorage.getItem('watched');
-  const parsedFilm = JSON.parse(savedFilm);
-
+  let parsedFilm;
+  if (localStorage.getItem('watched')) {
+    const savedFilm = localStorage.getItem('watched');
+    parsedFilm = JSON.parse(savedFilm);
+  } else {
+    parsedFilm = [];
+  }
   // parsedFilm.map(muvieId => {
   //   filmsMarkup(muvieId);
   // });
@@ -145,8 +159,13 @@ function watchedMarkup() {
 }
 
 function queueMarkup() {
-  const savedFilm = localStorage.getItem('queue');
-  const parsedFilm = JSON.parse(savedFilm);
+  let parsedFilm;
+  if (localStorage.getItem('queue')) {
+    const savedFilm = localStorage.getItem('queue');
+    parsedFilm = JSON.parse(savedFilm);
+  } else {
+    parsedFilm = [];
+  }
   // parsedFilm.map(muvieId => {
   //   filmsMarkup(muvieId);
   // });

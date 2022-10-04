@@ -2,9 +2,13 @@ import createPagination from './pagination';
 import getRefs from '../getRefs';
 
 const refs = getRefs();
-
+let totalPages = null;
 export default function addPagination(array) {
-  const totalPages = Math.ceil(array.length / 20);
+  if (array.length > 0) {
+    totalPages = Math.ceil(array.length / 20);
+  } else {
+    refs.pagination.classList.add('is-hidden');
+  }
   let page = 1;
   let films = array.slice(20 * page - 20, 20 * page);
   renderMarkupByPageOfLibrary(films);
