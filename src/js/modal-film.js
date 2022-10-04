@@ -1,8 +1,14 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
+
 import playButton from '../images/modal-film-poster-play-button.png';
-import { onQueueBtn, onWatchedBtn } from './local-storage/addToLStorage';
 import { watchTrailer } from './modal-trailer'; // для трейлера
+
+import { checkLSAndBtnTextOutputWatched, checkLSAndBtnTextOutputQueue,
+  onQueueBtn,
+  onWatchedBtn,
+} from './local-storage/addToLStorage';
+
 import throttle from 'lodash.throttle';
 
 // Modal
@@ -17,7 +23,7 @@ refs.popularFilmsList.addEventListener('click', e => {
   }
 
   openModal(Number(isCardMovie.id));
-
+ 
   refs.popularFilmsList.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
@@ -34,15 +40,20 @@ async function fetchDescr(filmId) {
   return descriptionFilm;
 }
 
-function altw() {
-  onWatchedBtn(Number(isCardMovie.id));
-}
+// function altw() {
+//   onWatchedBtn(Number(isCardMovie.id));
+// }
+let altw = null;
 let altq = null;
 function openModal(movie) {
   fetchDescr(movie).then(film => {
     altq = () => {
       onQueueBtn(film);
     };
+    altw = () => {
+      onWatchedBtn(film);
+    };
+
     refs.addToWatchedBtn.addEventListener('click', altw);
     refs.addToQueueBtn.addEventListener('click', altq);
 
@@ -100,6 +111,9 @@ function openModal(movie) {
     document
       .querySelector('.film__play-img')
       .addEventListener('click', watchTrailer); // для трейлера
+        checkLSAndBtnTextOutputWatched();
+        checkLSAndBtnTextOutputQueue();
+    
   });
 
   refs.modalEl.classList.remove('is-hidden');
