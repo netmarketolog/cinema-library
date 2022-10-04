@@ -105,18 +105,18 @@ function checkLSAndBtnTextOutputQueue() {
   addQueueList = localStorage.getItem('queue');
 const parsedWotchedFilm = JSON.parse(localStorage.getItem('queue')) || [];
 parsedWotchedFilm.find(film => {
-  console.log("film id map", Number(film.id)); 
-  console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+  // console.log("film id map", Number(film.id)); 
+  // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
   // console.log("Передвем ИД", Number(idFilm));Если передавать ИД по функции
    const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
   if (Number(film.id )=== Number(idFilm)) {
     
           refs.addToQueueBtn.textContent  = 'remove from queue';
-          console.log('true',refs.addToQueueBtn.textContent);
+          // console.log('true',refs.addToQueueBtn.textContent);
           return refs.addToQueueBtn.textContent;
         } else {
           refs.addToQueueBtn.textContent = 'add to queue';  
-          console.log('else',refs.addToQueueBtn.textContent);
+          // console.log('else',refs.addToQueueBtn.textContent);
         }
 }
 )}
@@ -136,17 +136,17 @@ function checkLSAndBtnTextOutputWatched() {
     addWatchedList = localStorage.getItem('watched');
   const parsedWotchedFilm = JSON.parse(localStorage.getItem('watched')) || [];
   parsedWotchedFilm.find(film => {
-    console.log("film id map", Number(film.id)); 
-    console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+    // console.log("film id map", Number(film.id)); 
+    // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
      const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
     if (Number(film.id )=== Number(idFilm)) {
       
             refs.addToWatchedBtn.textContent  = 'remove from watched';
-            console.log('true',refs.addToWatchedBtn.textContent);
+            // console.log('true',refs.addToWatchedBtn.textContent);
             return refs.addToWatchedBtn.textContent;
           } else {
             refs.addToWatchedBtn.textContent = 'add to watched';  
-            console.log('else',refs.addToWatchedBtn.textContent);
+            // console.log('else',refs.addToWatchedBtn.textContent);
             
           }
   
