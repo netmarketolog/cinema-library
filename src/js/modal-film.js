@@ -4,7 +4,7 @@ import getRefs from './getRefs';
 import playButton from '../images/modal-film-poster-play-button.png';
 import { watchTrailer } from './modal-trailer'; // для трейлера
 
-import { checkLSAndBtnTextOutputWatched, checkLSAndBtnTextOutputQueue,
+import { checkLSAndBtnTextOutputQueue, checkLSAndBtnTextOutputWatched, 
   onQueueBtn,
   onWatchedBtn,
 } from './local-storage/addToLStorage';
@@ -111,8 +111,9 @@ function openModal(movie) {
     document
       .querySelector('.film__play-img')
       .addEventListener('click', watchTrailer); // для трейлера
+       checkLSAndBtnTextOutputQueue();
         checkLSAndBtnTextOutputWatched();
-        checkLSAndBtnTextOutputQueue();
+        
     
   });
 
