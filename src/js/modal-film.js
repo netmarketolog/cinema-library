@@ -4,7 +4,9 @@ import getRefs from './getRefs';
 import playButton from '../images/modal-film-poster-play-button.png';
 import { watchTrailer } from './modal-trailer'; // для трейлера
 
-import { checkLSAndBtnTextOutputQueue, checkLSAndBtnTextOutputWatched, 
+import {
+  checkLSAndBtnTextOutputQueue,
+  checkLSAndBtnTextOutputWatched,
   onQueueBtn,
   onWatchedBtn,
 } from './local-storage/addToLStorage';
@@ -23,7 +25,7 @@ refs.popularFilmsList.addEventListener('click', e => {
   }
 
   openModal(Number(isCardMovie.id));
- 
+
   refs.popularFilmsList.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
@@ -111,10 +113,9 @@ function openModal(movie) {
     document
       .querySelector('.film__play-img')
       .addEventListener('click', watchTrailer); // для трейлера
-       checkLSAndBtnTextOutputQueue();
-        checkLSAndBtnTextOutputWatched();
-        
-    
+
+    checkLSAndBtnTextOutputQueue();
+    checkLSAndBtnTextOutputWatched();
   });
 
   refs.modalEl.classList.remove('is-hidden');

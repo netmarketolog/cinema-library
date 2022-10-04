@@ -29,20 +29,29 @@ function onQueueBtn(film) {
 
   if (queueList.length > 0) {
     if (queueList.find(queueList => queueList.id === film.id)) {
-      Notify.info('You already have this movie in your queue');
+      queueList.map(item => {
+        if (film.id === item.id) {
+          const indexId = queueList.indexOf(item);
+          queueList.splice(indexId, 1);
+        }
+      });
+      localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
+      editTextBtnAddQueue();
+      // Notify.info('You already have this movie in your queue');
       return;
     }
   }
   queueList.push(film);
 
-  Notify.success('Your movie has been added to the queue');
+  // Notify.success('Your movie has been added to the queue');
   if (watchedList.length > 0) {
     watchedList.map(films => {
       if (film.id === films.id) {
         const indexId = watchedList.indexOf(films);
         watchedList.splice(indexId, 1);
-        Notify.warning('Rewatching the movie');
+        // Notify.warning('Rewatching the movie');
         localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+        editTextBtnAddWatched();
       }
     });
   }
@@ -61,18 +70,28 @@ function onWatchedBtn(film) {
 
   if (watchedList.length > 0) {
     if (watchedList.find(watchedList => watchedList.id === film.id)) {
-      Notify.info('This movie has already been viewed');
+      watchedList.map(item => {
+        if (film.id === item.id) {
+          const indexId = watchedList.indexOf(item);
+          watchedList.splice(indexId, 1);
+        }
+      });
+      localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+
+      editTextBtnAddWatched();
+      // Notify.info('This movie has already been viewed');
       return;
     }
   }
   watchedList.push(film);
-  Notify.success('Your movie has been watched');
+  // Notify.success('Your movie has been watched');
   if (queueList.length > 0) {
     queueList.map(films => {
       if (film.id === films.id) {
         const indexId = queueList.indexOf(films);
         queueList.splice(indexId, 1);
         localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
+        editTextBtnAddQueue();
       }
     });
   }
@@ -80,7 +99,6 @@ function onWatchedBtn(film) {
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
 
   editTextBtnAddWatched();
-  
 }
 
 // 1 Привязатся к кнопкам
@@ -92,68 +110,64 @@ function onWatchedBtn(film) {
 // если одна кнопка ремов, то при клики на добавление - ремов меняется на добавление
 // if( refs.addToQueueBtn.textContent.includes("remove from queue"))
 function editTextBtnAddQueue() {
-  if (refs.addToQueueBtn.textContent.includes("add to queue")) {      
-    refs.addToQueueBtn.textContent = "remove from queue";
+  if (refs.addToQueueBtn.textContent.includes('add to queue')) {
+    refs.addToQueueBtn.textContent = 'remove from queue';
     return refs.addToQueueBtn.textContent;
   } else {
-    refs.addToQueueBtn.textContent = "add to queue";
+    refs.addToQueueBtn.textContent = 'add to queue';
   }
 }
 
-
 function checkLSAndBtnTextOutputQueue() {
   addQueueList = localStorage.getItem('queue');
-const parsedWotchedFilm = JSON.parse(localStorage.getItem('queue')) || [];
-parsedWotchedFilm.find(film => {
-  // console.log("film id map", Number(film.id)); 
-  // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
-  // console.log("Передвем ИД", Number(idFilm));Если передавать ИД по функции
-   const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
-  if (Number(film.id )=== Number(idFilm)) {
-    
-          refs.addToQueueBtn.textContent  = 'remove from queue';
-          // console.log('true',refs.addToQueueBtn.textContent);
-          return refs.addToQueueBtn.textContent;
-        } else {
-          refs.addToQueueBtn.textContent = 'add to queue';  
-          // console.log('else',refs.addToQueueBtn.textContent);
-        }
-}
-)}
-function editTextBtnAddWatched() {
-    if (refs.addToWatchedBtn.textContent.includes("add to watched")) {      
-      refs.addToWatchedBtn.textContent = "remove from watched";
-      return refs.addToWatchedBtn.textContent;
+  const parsedWotchedFilm = JSON.parse(localStorage.getItem('queue')) || [];
+  parsedWotchedFilm.find(film => {
+    // console.log("film id map", Number(film.id));
+    // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+    // console.log("Передвем ИД", Number(idFilm));Если передавать ИД по функции
+    const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
+    if (Number(film.id) === Number(idFilm)) {
+      refs.addToQueueBtn.textContent = 'remove from queue';
+      // console.log('true',refs.addToQueueBtn.textContent);
+      return refs.addToQueueBtn.textContent;
     } else {
-      refs.addToWatchedBtn.textContent = "add to watched";
+      refs.addToQueueBtn.textContent = 'add to queue';
+      // console.log('else',refs.addToQueueBtn.textContent);
     }
+  });
 }
-
+function editTextBtnAddWatched() {
+  if (refs.addToWatchedBtn.textContent.includes('add to watched')) {
+    refs.addToWatchedBtn.textContent = 'remove from watched';
+    return refs.addToWatchedBtn.textContent;
+  } else {
+    refs.addToWatchedBtn.textContent = 'add to watched';
+  }
+}
 
 // forText
 
 function checkLSAndBtnTextOutputWatched() {
-    addWatchedList = localStorage.getItem('watched');
+  addWatchedList = localStorage.getItem('watched');
   const parsedWotchedFilm = JSON.parse(localStorage.getItem('watched')) || [];
   parsedWotchedFilm.find(film => {
-    // console.log("film id map", Number(film.id)); 
+    // console.log("film id map", Number(film.id));
     // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
-     const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
-    if (Number(film.id )=== Number(idFilm)) {
-      
-            refs.addToWatchedBtn.textContent  = 'remove from watched';
-            // console.log('true',refs.addToWatchedBtn.textContent);
-            return refs.addToWatchedBtn.textContent;
-          } else {
-            refs.addToWatchedBtn.textContent = 'add to watched';  
-            // console.log('else',refs.addToWatchedBtn.textContent);
-            
-          }
-  
+    const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
+    if (Number(film.id) === Number(idFilm)) {
+      refs.addToWatchedBtn.textContent = 'remove from watched';
+      // console.log('true',refs.addToWatchedBtn.textContent);
+      return refs.addToWatchedBtn.textContent;
+    } else {
+      refs.addToWatchedBtn.textContent = 'add to watched';
+      // console.log('else',refs.addToWatchedBtn.textContent);
+    }
+  });
 }
-)}
 
-
-export {  checkLSAndBtnTextOutputQueue, checkLSAndBtnTextOutputWatched, onQueueBtn, onWatchedBtn };
-
-
+export {
+  checkLSAndBtnTextOutputQueue,
+  checkLSAndBtnTextOutputWatched,
+  onQueueBtn,
+  onWatchedBtn,
+};
