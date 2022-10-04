@@ -94,7 +94,7 @@ function onWatchedBtn(film) {
 function editTextBtnAddQueue() {
   if (refs.addToQueueBtn.textContent.includes("add to queue")) {      
     refs.addToQueueBtn.textContent = "remove from queue";
-    return
+    return refs.addToQueueBtn.textContent;
   } else {
     refs.addToQueueBtn.textContent = "add to queue";
   }
@@ -123,7 +123,7 @@ parsedWotchedFilm.find(film => {
 function editTextBtnAddWatched() {
     if (refs.addToWatchedBtn.textContent.includes("add to watched")) {      
       refs.addToWatchedBtn.textContent = "remove from watched";
-      return
+      return refs.addToWatchedBtn.textContent;
     } else {
       refs.addToWatchedBtn.textContent = "add to watched";
     }
