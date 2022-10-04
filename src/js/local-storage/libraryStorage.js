@@ -29,6 +29,7 @@ parsedWotchedFilm.map(muvieId => {
 });
 
 function onWatchedVideo() {
+  refs.pagination.classList.add('is-hidden');
   refs.watchedBtn.setAttribute('disabled', true);
   refs.queueBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Remove from Watched';
@@ -47,6 +48,7 @@ function onWatchedVideo() {
 }
 
 function onQueueVideo() {
+  refs.pagination.classList.add('is-hidden');
   refs.queueBtn.setAttribute('disabled', true);
   refs.watchedBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Add to Watched';
@@ -137,6 +139,7 @@ function watchedMarkup() {
   // parsedFilm.map(muvieId => {
   //   filmsMarkup(muvieId);
   // });
+  refs.pagination.classList.remove('is-hidden');
   addPagination(parsedFilm);
   refs.spinner.classList.add('is-hidden');
 }
@@ -147,6 +150,7 @@ function queueMarkup() {
   // parsedFilm.map(muvieId => {
   //   filmsMarkup(muvieId);
   // });
+  refs.pagination.classList.remove('is-hidden');
   addPagination(parsedFilm);
   refs.spinner.classList.add('is-hidden');
 }

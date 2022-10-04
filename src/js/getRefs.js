@@ -8,12 +8,15 @@ export default function getRefs() {
     queueBtn: document.querySelector('[data-action="queue"]'),
     modalRendEl: document.querySelector('.film__container'),
     body: document.querySelector('body'),
-    addToQueueBtn: document.querySelector("[data-addToQueue]"),
-    addToWatchedBtn: document.querySelector("[data-addToWatched]"),
+    addToQueueBtn: document.querySelector('[data-addToQueue]'),
+    addToWatchedBtn: document.querySelector('[data-addToWatched]'),
     modalTeamEl: document.querySelector('.backdrop-team'),
     modalTeamOpenBtn: document.querySelector('[data-action="team-open-modal"]'),
-    modalTeamCloseBtn: document.querySelector('[data-action="team-close-modal"]'),
+    modalTeamCloseBtn: document.querySelector(
+      '[data-action="team-close-modal"]'
+    ),
     paginationEl: document.querySelector('.pagination ul'),
+    pagination: document.querySelector('.pagination'),
   };
   return refs;
 }
