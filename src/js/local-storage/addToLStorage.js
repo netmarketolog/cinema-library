@@ -47,7 +47,6 @@ function onQueueBtn(film) {
     });
   }
 
-  // changeTextQueue();
   localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
   editTextBtnAddQueue();
 }
@@ -78,7 +77,6 @@ function onWatchedBtn(film) {
     });
   }
 
-  // changeTextWatched();
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
 
   editTextBtnAddWatched();
@@ -156,8 +154,6 @@ export default function checkLSAndBtnTextOutputWatched() {
 )}
 
 
-//изменение текста кнопок
-
-// 1 менять текст на кнопке
 export {  checkLSAndBtnTextOutputQueue, checkLSAndBtnTextOutputWatched, onQueueBtn, onWatchedBtn };
+
 
