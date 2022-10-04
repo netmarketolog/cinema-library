@@ -3,6 +3,7 @@ import getRefs from '../getRefs';
 import closeModal from '../modal-film';
 import '../modal-film';
 import '../local-storage/addToLStorage';
+import addPagination from '../api/libraryPagination';
 const refs = getRefs();
 
 onQueueVideo();
@@ -13,65 +14,82 @@ let watched = [];
 let queue = [];
 let addWatched = [];
 let addQueue = [];
-const savedQueueFilm = localStorage.getItem('queue');
-const parsedQueueFilm = JSON.parse(savedQueueFilm);
-parsedQueueFilm.map(muvieId => {
-  queue.push(muvieId);
-  addWatched.push(muvieId);
-});
+let parsedQueueFilm;
+let parsedWotchedFilm;
+if (localStorage.getItem('queue')) {
+  const savedQueueFilm = localStorage.getItem('queue');
+  parsedQueueFilm = JSON.parse(savedQueueFilm);
+  parsedQueueFilm.map(muvieId => {
+    queue.push(muvieId);
+    addWatched.push(muvieId);
+  });
+} else {
+  parsedQueueFilm = [];
+}
 
-const savedWotchedFilm = localStorage.getItem('watched');
-const parsedWotchedFilm = JSON.parse(savedWotchedFilm);
-parsedWotchedFilm.map(muvieId => {
-  watched.push(muvieId);
-  addQueue.push(muvieId);
-});
+if (localStorage.getItem('watched')) {
+  const savedWotchedFilm = localStorage.getItem('watched');
+  parsedWotchedFilm = JSON.parse(savedWotchedFilm);
+  parsedWotchedFilm.map(muvieId => {
+    watched.push(muvieId);
+    addQueue.push(muvieId);
+  });
+} else {
+  parsedWotchedFilm = [];
+}
 
 function onWatchedVideo() {
+  refs.pagination.classList.add('is-hidden');
   refs.watchedBtn.setAttribute('disabled', true);
   refs.queueBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Remove from Watched';
   refs.addToQueueBtn.textContent = 'Add to Queue';
+  refs.addToQueueBtn.removeEventListener('click', onDeleteQueue);
+  refs.addToWatchedBtn.removeEventListener('click', addToWatched);
   refs.addToWatchedBtn.addEventListener('click', onDeleteWatched);
   refs.addToQueueBtn.addEventListener('click', addToQueue);
   refs.queueBtn.classList.remove('is-active');
   refs.watchedBtn.classList.add('is-active');
   onRemoveQueue();
-  watchedMarkup();
+  refs.spinner.classList.remove('is-hidden');
+  setTimeout(() => {
+    watchedMarkup();
+  }, 400);
 }
 
 function onQueueVideo() {
+  refs.pagination.classList.add('is-hidden');
   refs.queueBtn.setAttribute('disabled', true);
   refs.watchedBtn.removeAttribute('disabled');
   refs.addToWatchedBtn.textContent = 'Add to Watched';
   refs.addToQueueBtn.textContent = 'Remove from Queue';
+  refs.addToWatchedBtn.removeEventListener('click', onDeleteWatched);
+  refs.addToQueueBtn.removeEventListener('click', addToQueue);
   refs.addToQueueBtn.addEventListener('click', onDeleteQueue);
   refs.addToWatchedBtn.addEventListener('click', addToWatched);
   refs.queueBtn.classList.add('is-active');
   refs.watchedBtn.classList.remove('is-active');
   onRemoveWatched();
-  queueMarkup();
+  refs.spinner.classList.remove('is-hidden');
+  setTimeout(() => {
+    queueMarkup();
+  }, 400);
 }
 function addToQueue() {
   const x = document.querySelector('.film__poster');
   const y = document.querySelectorAll('.card__item');
   y.forEach(li => {
     if (x.id === li.id) {
-      console.log(x.id);
-      console.log(li.id);
       addQueue.map(film => {
-        console.log(film.id);
         if (film.id === Number(li.id)) {
-          console.log(film.id);
-          console.log(li.id);
           const x = addQueue.indexOf(film);
-          console.log(x);
           addWatched.push(film);
           queue.push(film);
           addQueue.splice(x, 1);
           watched.splice(x, 1);
           li.remove();
           closeModal();
+          refs.spinner.classList.remove('is-hidden');
 
           const savedWatced = localStorage.getItem('watched');
           const parsedWatced = JSON.parse(savedWatced);
@@ -82,6 +100,9 @@ function addToQueue() {
           const parsedQueue = JSON.parse(savedQueue);
           localStorage.removeItem('queue', parsedQueue);
           localStorage.setItem('queue', JSON.stringify(queue));
+          setTimeout(() => {
+            watchedMarkup();
+          }, 400);
         }
       });
     }
@@ -93,21 +114,16 @@ function addToWatched() {
   const y = document.querySelectorAll('.card__item');
   y.forEach(li => {
     if (x.id === li.id) {
-      console.log(x.id);
-      console.log(li.id);
       addWatched.map(film => {
-        console.log(film.id);
         if (film.id === Number(li.id)) {
-          console.log(film.id);
-          console.log(li.id);
           const x = addWatched.indexOf(film);
-          console.log(x);
           addQueue.push(film);
           watched.push(film);
           addWatched.splice(x, 1);
           queue.splice(x, 1);
           li.remove();
           closeModal();
+          refs.spinner.classList.remove('is-hidden');
 
           const savedWatced = localStorage.getItem('watched');
           const parsedWatced = JSON.parse(savedWatced);
@@ -118,26 +134,44 @@ function addToWatched() {
           const parsedQueue = JSON.parse(savedQueue);
           localStorage.removeItem('queue', parsedQueue);
           localStorage.setItem('queue', JSON.stringify(queue));
+          setTimeout(() => {
+            queueMarkup();
+          }, 400);
         }
       });
     }
   });
 }
 function watchedMarkup() {
-  const savedFilm = localStorage.getItem('watched');
-  const parsedFilm = JSON.parse(savedFilm);
-
-  parsedFilm.map(muvieId => {
-    filmsMarkup(muvieId);
-  });
+  let parsedFilm;
+  if (localStorage.getItem('watched')) {
+    const savedFilm = localStorage.getItem('watched');
+    parsedFilm = JSON.parse(savedFilm);
+  } else {
+    parsedFilm = [];
+  }
+  // parsedFilm.map(muvieId => {
+  //   filmsMarkup(muvieId);
+  // });
+  refs.pagination.classList.remove('is-hidden');
+  addPagination(parsedFilm);
+  refs.spinner.classList.add('is-hidden');
 }
 
 function queueMarkup() {
-  const savedFilm = localStorage.getItem('queue');
-  const parsedFilm = JSON.parse(savedFilm);
-  parsedFilm.map(muvieId => {
-    filmsMarkup(muvieId);
-  });
+  let parsedFilm;
+  if (localStorage.getItem('queue')) {
+    const savedFilm = localStorage.getItem('queue');
+    parsedFilm = JSON.parse(savedFilm);
+  } else {
+    parsedFilm = [];
+  }
+  // parsedFilm.map(muvieId => {
+  //   filmsMarkup(muvieId);
+  // });
+  refs.pagination.classList.remove('is-hidden');
+  addPagination(parsedFilm);
+  refs.spinner.classList.add('is-hidden');
 }
 
 function onRemoveWatched() {
@@ -165,12 +199,17 @@ function onDeleteQueue() {
           queue.splice(x, 1);
           li.remove();
           closeModal();
+          refs.spinner.classList.remove('is-hidden');
 
           const savedSettings = localStorage.getItem('queue');
           const parsedSettings = JSON.parse(savedSettings);
           localStorage.removeItem('queue', parsedSettings);
 
           localStorage.setItem('queue', JSON.stringify(queue));
+
+          setTimeout(() => {
+            queueMarkup();
+          }, 400);
         }
       });
     }
@@ -188,12 +227,16 @@ function onDeleteWatched() {
           watched.splice(x, 1);
           li.remove();
           closeModal();
+          refs.spinner.classList.remove('is-hidden');
 
           const savedSettings = localStorage.getItem('watched');
           const parsedSettings = JSON.parse(savedSettings);
           localStorage.removeItem('watched', parsedSettings);
 
           localStorage.setItem('watched', JSON.stringify(watched));
+          setTimeout(() => {
+            watchedMarkup();
+          }, 400);
         }
       });
     }

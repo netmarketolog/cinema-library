@@ -17,11 +17,7 @@ export default function fetchPopularFilms() {
       let totalPages = Math.ceil(filmsPopular.allFilms / 20);
       let page = filmsPopular.page;
 
-      refs.paginationEl.innerHTML = createPagination(
-        totalPages,
-        page,
-        refs.paginationEl
-      );
+      refs.paginationEl.innerHTML = createPagination(totalPages, page);
 
       refs.paginationEl.addEventListener('click', onPageBtnClick);
 

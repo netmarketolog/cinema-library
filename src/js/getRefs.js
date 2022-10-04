@@ -17,6 +17,7 @@ export default function getRefs() {
     ),
     paginationEl: document.querySelector('.pagination ul'),
     btnId: document.querySelector('.film_btn--add'),
-  };
+    pagination: document.querySelector('.pagination'),
+    }
   return refs;
 }
