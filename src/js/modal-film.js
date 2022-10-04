@@ -1,7 +1,7 @@
 const API_KEY = '8fa17eefa9c2b424e1a30217c39bc412';
 import getRefs from './getRefs';
 
-import playButton from '../images/modal-film-poster-play-button.png';
+import playButton from './images/modal-film-poster-play-button.png';
 import { watchTrailer } from './modal-trailer'; // для трейлера
 
 import { checkLSAndBtnTextOutputWatched, checkLSAndBtnTextOutputQueue,
@@ -65,8 +65,6 @@ function openModal(movie) {
           class="film__img"
         />
         <div class="film__overlay">
-
-
           <img
             src="${playButton}"
             alt="icon play"
