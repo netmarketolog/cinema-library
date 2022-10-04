@@ -65,8 +65,10 @@ function openModal(movie) {
           class="film__img"
         />
         <div class="film__overlay">
+
+
           <img
-            src="${playButton}./images/modal-film-poster-play-button.png"
+            src="${playButton}"
             alt="icon play"
             class="film__play-img"
           />
