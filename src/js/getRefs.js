@@ -10,7 +10,7 @@ export default function getRefs() {
     body: document.querySelector('body'),
     addToQueueBtn: document.querySelector('[data-addToQueue]'),
     addToWatchedBtn: document.querySelector('[data-addToWatched]'),
-    modalTeamEl: document.querySelector('.backdrop-team'),
+    modalTeamEl: document.querySelector('[data-action ="backdrop-team"]'),
     modalTeamOpenBtn: document.querySelector('[data-action="team-open-modal"]'),
     modalTeamCloseBtn: document.querySelector(
       '[data-action="team-close-modal"]'
