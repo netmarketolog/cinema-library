@@ -242,3 +242,4 @@ function onDeleteWatched() {
     }
   });
 }
+console.log(watched);

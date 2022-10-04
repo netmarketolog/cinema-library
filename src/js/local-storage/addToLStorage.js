@@ -8,12 +8,15 @@ Notify.init({
 const refs = {
   addToQueueBtn: document.querySelector('[data-addToQueue]'),
   addToWatchedBtn: document.querySelector('[data-addToWatched]'),
+  modalRendEl: document.querySelector('.film__container'),
 };
 const KEY_QUEUE = 'queue';
 const KEY_WATCHED = 'watched';
 
 let queueList = [];
 let watchedList = [];
+let addQueueList = [];
+let addWatchedList = [];
 
 // Функція додавання фільмів до черги
 function onQueueBtn(film) {
@@ -45,6 +48,7 @@ function onQueueBtn(film) {
   }
 
   localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
+  editTextBtnAddQueue();
 }
 // Функція додавання переглянутих фільмів
 function onWatchedBtn(film) {
@@ -74,6 +78,82 @@ function onWatchedBtn(film) {
   }
 
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
+
+  editTextBtnAddWatched();
+  
 }
 
-export { onQueueBtn, onWatchedBtn };
+// 1 Привязатся к кнопкам
+// 2 проверка текста на кнопке
+// 3 проверять масив стореджа, есть ли ИД.
+// 4 если нет ИД при клики на кнопку добоалять в сторедж
+// 5 если есть ИД при клики на кнопку добоалять в сторедж
+
+// если одна кнопка ремов, то при клики на добавление - ремов меняется на добавление
+// if( refs.addToQueueBtn.textContent.includes("remove from queue"))
+function editTextBtnAddQueue() {
+  if (refs.addToQueueBtn.textContent.includes("add to queue")) {      
+    refs.addToQueueBtn.textContent = "remove from queue";
+    return
+  } else {
+    refs.addToQueueBtn.textContent = "add to queue";
+  }
+}
+
+
+export default function checkLSAndBtnTextOutputQueue() {
+  addQueueList = localStorage.getItem('queue');
+const parsedWotchedFilm = JSON.parse(localStorage.getItem('queue')) || [];
+parsedWotchedFilm.find(film => {
+  // console.log("film id map", Number(film.id)); 
+  // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+  // console.log("Передвем ИД", Number(idFilm));Если передавать ИД по функции
+   const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
+  if (Number(film.id )=== Number(idFilm)) {
+    
+          refs.addToQueueBtn.textContent  = 'remove from queue';
+          // console.log('true',refs.addToQueueBtn.textContent);
+          return refs.addToQueueBtn.textContent;
+        } else {
+          refs.addToQueueBtn.textContent = 'add to queue';  
+          // console.log('else',refs.addToQueueBtn.textContent);
+        }
+}
+)}
+function editTextBtnAddWatched() {
+    if (refs.addToWatchedBtn.textContent.includes("add to watched")) {      
+      refs.addToWatchedBtn.textContent = "remove from watched";
+      return
+    } else {
+      refs.addToWatchedBtn.textContent = "add to watched";
+    }
+}
+
+
+// forText
+
+export default function checkLSAndBtnTextOutputWatched() {
+    addWatchedList = localStorage.getItem('watched');
+  const parsedWotchedFilm = JSON.parse(localStorage.getItem('watched')) || [];
+  parsedWotchedFilm.find(film => {
+    // console.log("film id map", Number(film.id)); 
+    // console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+     const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
+    if (Number(film.id )=== Number(idFilm)) {
+      
+            refs.addToWatchedBtn.textContent  = 'remove from watched';
+            // console.log('true',refs.addToWatchedBtn.textContent);
+            return refs.addToWatchedBtn.textContent;
+          } else {
+            refs.addToWatchedBtn.textContent = 'add to watched';  
+            // console.log('else',refs.addToWatchedBtn.textContent);
+            
+          }
+  
+}
+)}
+
+
+export {  checkLSAndBtnTextOutputQueue, checkLSAndBtnTextOutputWatched, onQueueBtn, onWatchedBtn };
+
+

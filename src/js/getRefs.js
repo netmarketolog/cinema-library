@@ -16,7 +16,8 @@ export default function getRefs() {
       '[data-action="team-close-modal"]'
     ),
     paginationEl: document.querySelector('.pagination ul'),
+    btnId: document.querySelector('.film_btn--add'),
     pagination: document.querySelector('.pagination'),
-  };
+    }
   return refs;
 }
