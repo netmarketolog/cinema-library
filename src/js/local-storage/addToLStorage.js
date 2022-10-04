@@ -8,6 +8,7 @@ Notify.init({
 const refs = {
   addToQueueBtn: document.querySelector('[data-addToQueue]'),
   addToWatchedBtn: document.querySelector('[data-addToWatched]'),
+  modalRendEl: document.querySelector('.film__container'),
 };
 const KEY_QUEUE = 'queue';
 const KEY_WATCHED = 'watched';
@@ -82,6 +83,99 @@ function onWatchedBtn(film) {
   textBtn();
   // qwqw();
 }
+
+// 1 Привязатся к кнопкам
+// 2 проверка текста на кнопке
+// 3 проверять масив стореджа, есть ли ИД.
+// 4 если нет ИД при клики на кнопку добоалять в сторедж
+// 5 если есть ИД при клики на кнопку добоалять в сторедж
+
+
+function textBtn() {
+    if (refs.addToWatchedBtn.textContent.includes("add to watched")) {      
+      refs.addToWatchedBtn.textContent = "remove from watched";
+      return
+    } else {
+      refs.addToWatchedBtn.textContent = "add to watched";
+    }
+}
+
+export default function forText() {
+    addWatchedList = localStorage.getItem('watched');
+  const parsedWotchedFilm = JSON.parse(localStorage.getItem('watched')) || [];
+  parsedWotchedFilm.map(film => {
+    console.log("film id map", Number(film.id)); 
+    console.dir(refs.modalRendEl.firstChild.attributes.id.nodeValue);
+    // console.log("Передвем ИД", Number(idFilm));Если передавать ИД по функции
+     const idFilm = refs.modalRendEl.firstChild.attributes.id.nodeValue;
+    if (Number(film.id )=== Number(idFilm)) {
+      
+            refs.addToWatchedBtn.textContent  = 'remove from watched';
+            console.log('true',refs.addToWatchedBtn.textContent);
+            return;
+          } else {
+            refs.addToWatchedBtn.textContent = 'add to watched';  
+            console.log('else',refs.addToWatchedBtn.textContent);
+          }
+  
+})}
+
+// function textBtn() {
+//   addWatchedList = localStorage.getItem('watched');
+//   const parsedWotchedFilm = JSON.parse(addWatchedList);
+//   parsedWotchedFilm.map(film => {
+//     console.log(film);
+//     const y = document.querySelector('.film__btn');
+//     // refs.addToWatchedBtn.textContent = 'add to watched';
+//     if (film.id === Number(y.id)) {
+//       refs.addToWatchedBtn.textContent = 'remove from watched';
+//     } else {
+//       refs.addToWatchedBtn.textContent = 'add to watched';
+
+//     }
+//   });
+// }
+// export default function forText() {
+//   addWatchedList = localStorage.getItem('watched');
+//   const parsedWotchedFilm = JSON.parse(localStorage.getItem('watched')) || [];
+//   parsedWotchedFilm.map(film => {
+//     const y = document.querySelector('.film__btn');
+//     // refs.addToWatchedBtn.textContent = 'add to watched';
+//     // console.log('film.id', film.id);
+//     // console.log('Number(y.id)',Number(y.id));
+//     if (film.id === Number(y.id)) {
+//       console.dir(refs.addToWatchedBtn);
+//       refs.addToWatchedBtn.textContent  = 'remove from watched';
+//       console.log(refs.addToWatchedBtn.textContent);
+//     } else {
+//       refs.addToWatchedBtn.textContent = 'add to watched';
+//       console.log(refs.addToWatchedBtn.textContent);
+      
+//     }
+//     if (film.id === Number(y.id)) {
+//   console.dir(refs.addToWatchedBtn);
+//   refs.addToWatchedBtn.innerHTML  = `<button type="button" class="film__btn film__btn--add" data-addToWatched>
+//   remove from watched
+// </button>;`
+//   console.log(refs.addToWatchedBtn.textContent);
+// } 
+//   refs.addToWatchedBtn.innerHTML = `<button type="button" class="film__btn film__btn--add" data-addToWatched>
+//   add to watched
+// </button>`;
+//   });
+// }
+
+// if (film.id === Number(y.id)) {
+//   console.dir(refs.addToWatchedBtn);
+//   refs.addToWatchedBtn.innerHTML  = `<button type="button" class="film__btn film__btn--add" data-addToWatched>
+//   remove from watched
+// </button>;`
+//   console.log(refs.addToWatchedBtn.textContent);
+// } 
+//   refs.addToWatchedBtn.innerHTML = `<button type="button" class="film__btn film__btn--add" data-addToWatched>
+//   add to watched
+// </button>`;
+
 // function qwqw() {
 //   const savedWotchedFilm = localStorage.getItem('watched');
 //   const parsedWotchedFilm = JSON.parse(savedWotchedFilm);
@@ -92,31 +186,6 @@ function onWatchedBtn(film) {
 //     addWatchedList.push(muvieId);
 //   });
 // }
-
-function textBtn() {
-  addWatchedList = localStorage.getItem('watched');
-  const parsedWotchedFilm = JSON.parse(addWatchedList);
-  parsedWotchedFilm.map(film => {
-    console.log(film);
-    const y = document.querySelector('.film__btn');
-    refs.addToWatchedBtn.textContent = 'add to watched';
-    if (film.id === Number(y.id)) {
-      refs.addToWatchedBtn.textContent = 'remove from watched';
-    }
-  });
-}
-export default function forText() {
-  addWatchedList = localStorage.getItem('watched');
-  const parsedWotchedFilm = JSON.parse(addWatchedList);
-  parsedWotchedFilm.map(film => {
-    const y = document.querySelector('.film__btn');
-    refs.addToWatchedBtn.textContent = 'add to watched';
-    if (film.id === Number(y.id)) {
-      refs.addToWatchedBtn.textContent = 'remove from watched';
-      console.log(refs.addToWatchedBtn.textContent);
-    }
-  });
-}
 
 //изменение текста кнопок
 // 1 менять текст на кнопке
