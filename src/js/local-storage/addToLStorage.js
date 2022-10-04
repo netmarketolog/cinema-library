@@ -44,7 +44,6 @@ function onQueueBtn(film) {
     });
   }
 
-  // changeTextQueue();
   localStorage.setItem(KEY_QUEUE, JSON.stringify(queueList));
 }
 // Функція додавання переглянутих фільмів
@@ -74,10 +73,7 @@ function onWatchedBtn(film) {
     });
   }
 
-  // changeTextWatched();
   localStorage.setItem(KEY_WATCHED, JSON.stringify(watchedList));
 }
-
-//изменение текста кнопок
 
 export { onQueueBtn, onWatchedBtn };
