@@ -13,11 +13,28 @@
             >Home</a
           >
         </li>
-        <li class="site-nav__item">
+        <li class="site-nav__item library visually-hidden">
           <a class="site-nav__link" href="./my-library.html">my library</a>
+        </li>
+        <li class="site-nav__item">
+          <a
+            type="button"
+            class="site-nav__link"
+            id="openSignInModalBtn"
+            data-key="log-in"
+            >Log in</a
+          >
+          <a
+            type="button"
+            class="site-nav__link"
+            id="logoutBtn"
+            data-key="log-out"
+            >Log out</a
+          >
         </li>
       </ul>
     </nav>
+    <div id="loginUserDetails"></div>
     <div class="search-form">
       <form class="search-form" id="search-form">
         <input
@@ -38,7 +55,6 @@
     <p class="error-search is-hidden">
       Search result not successful. Enter the correct movie name and
     </p>
-
     <div class="theme-switch">
       <label class="switch">
         <input

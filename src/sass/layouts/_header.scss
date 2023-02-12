@@ -85,6 +85,7 @@
   text-align: center;
   text-transform: uppercase;
   color: #fff;
+  cursor: pointer;
 }
 
 .search-form__input::placeholder {
@@ -170,4 +171,10 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+#loginUserDetails {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 15%;
 }
