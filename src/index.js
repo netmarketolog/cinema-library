@@ -8,6 +8,7 @@ fetchPopularFilms();
 import './js/theme-switch';
 import './js/search-by-name/searchName';
 
+import './js/firebase';
 import './js/modal-film';
 import './js/modal-trailer';
 import './js/modal-team';
