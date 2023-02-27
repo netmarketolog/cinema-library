@@ -48,7 +48,7 @@ const instance = basicLightbox.create(
       </div>
       <button type="button" id="close-modal-btn">
         <svg width="14" height="14">
-        <use href="/sprite.f14d31f7.svg#icon-close"></use>
+        <use href="sprite.4816ad45.svg#icon-close"></use>
       </svg>
       </button>
         <p class="auth-container-text" data-key="description">Enter your email address and password to log in</p>
@@ -61,21 +61,21 @@ const instance = basicLightbox.create(
             <li class="social-items">
               <a id="login-google" class="social-login-btn">
                 <svg width="25" height="25">
-                  <use href="/sprite.f14d31f7.svg#icon-google"></use>
+                  <use href="sprite.4816ad45.svg#icon-google"></use>
                 </svg>
               </a>
             </li>
             <li class="social-items">
               <a id="login-fb" class="social-login-btn fb-btn">
                 <svg width="25" height="25">
-                  <use href="/sprite.f14d31f7.svg#facebook"></use>
+                  <use href="/Test/sprite.4816ad45.svg#facebook"></use>
                 </svg>
               </a>
             </li>
             <li class="social-items">
               <a id="login-github" class="social-login-btn git-btn">
                 <svg width="25" height="25">
-                  <use href="/sprite.f14d31f7.svg#icon-github"</use>
+                  <use href="sprite.4816ad45.svg#icon-github"</use>
                 </svg>
               </a>
             </li>
@@ -102,7 +102,7 @@ const instance2 = basicLightbox.create(
     </div>
       <button type="button" id="close-modal-btn">
         <svg width="14" height="14">
-        <use href="/sprite.f14d31f7.svg#icon-close"></use>
+        <use href="sprite.4816ad45.svg#icon-close"></use>
       </svg>
       </button>
       <p class="auth-container-text" data-key="description">Enter your email address and password to sign up</p>
@@ -243,7 +243,7 @@ function logOutUser() {
 function showUserDetails(user) {
   if (user.photoURL) {
     refs.loginUserDetails.innerHTML = `
-  <img class="user-img" src="${user.photoURL}" width=25"px">
+  <img class="user-img" src="${user.photoURL}" width=20"px">
   <p class="user-name">${user.displayName}</p>`;
   } else {
     refs.loginUserDetails.innerHTML = `<p class="user-email">${user.email}</p>`;
@@ -256,7 +256,6 @@ onAuthStateChanged(auth, user => {
   if (user) {
     libraryBtn.classList.remove('visually-hidden');
     showUserDetails(user);
-    console.log(user);
     const userId = user.uid;
     refs.openSignInModalBtn.style.display = 'none';
     refs.logoutBtn.style.display = 'block';
