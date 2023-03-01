@@ -68,9 +68,9 @@ const instance = basicLightbox.create(
             <li class="social-items">
               <a id="login-fb" class="social-login-btn fb-btn">
                 <svg width="25" height="25">
-                  <use href="/Test/sprite.4816ad45.svg#facebook"></use>
+                  <use href="sprite.4816ad45.svg#facebook"></use>
                 </svg>
-              </a>
+              </a> 
             </li>
             <li class="social-items">
               <a id="login-github" class="social-login-btn git-btn">
